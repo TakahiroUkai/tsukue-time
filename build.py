@@ -5,6 +5,7 @@
   python3 build.py            # docs/ を生成(プレビュー画像 docs/img/ が無いシートは画像なしで出力)
   python3 build.py --thumbs   # 先にプレビュー画像(Playwright)を作ってから生成
   python3 build.py --next     # 次に作る題材(data/queue.json の先頭の未掲載)を表示
+  python3 build.py --artifact-json <id>   # 自分用Artifactに足す1件のJSON(<は\\u003cに置き換え済み)を表示
 """
 import html
 import json
@@ -264,7 +265,17 @@ def next_topic():
     print("")
 
 
+def artifact_json(sid):
+    s = next(x for x in SHEETS if x["id"] == sid)
+    frag = (ROOT / "content/sheets" / (sid + ".html")).read_text(encoding="utf8").rstrip()
+    item = {"id": s["id"], "tab": s["tab"], "title": s["title"], "desc": s["desc"], "added": s["added"], "html": frag}
+    print(json.dumps(item, ensure_ascii=False, separators=(",", ":")).replace("<", "\\u003c"))
+
+
 def main():
+    if "--artifact-json" in sys.argv:
+        artifact_json(sys.argv[sys.argv.index("--artifact-json") + 1])
+        return
     if "--next" in sys.argv:
         next_topic()
         return

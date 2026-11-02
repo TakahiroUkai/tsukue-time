@@ -42,6 +42,33 @@
     }
     bindInputs(sheet);
   }
+  Array.prototype.forEach.call(document.querySelectorAll('[data-share]'), function (box) {
+    var url = box.getAttribute('data-url'), title = box.getAttribute('data-title');
+    var ok = box.querySelector('.share-ok');
+    function say(m) { ok.textContent = m; setTimeout(function () { ok.textContent = ''; }, 2500); }
+    var nat = box.querySelector('[data-share-native]');
+    if (nat && navigator.share) {
+      nat.hidden = false;
+      nat.addEventListener('click', function () {
+        navigator.share({ title: title, url: url }).catch(function () {});
+      });
+    }
+    var cp = box.querySelector('[data-share-copy]');
+    cp.addEventListener('click', function () {
+      function fallback() {
+        var ta = document.createElement('textarea');
+        ta.value = url; ta.setAttribute('readonly', ''); ta.style.position = 'fixed'; ta.style.opacity = '0';
+        document.body.appendChild(ta); ta.select();
+        var done = false;
+        try { done = document.execCommand('copy'); } catch (e) {}
+        document.body.removeChild(ta);
+        say(done ? 'コピーしました' : 'コピーできませんでした');
+      }
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(url).then(function () { say('コピーしました'); }, fallback);
+      } else { fallback(); }
+    });
+  });
   Array.prototype.forEach.call(document.querySelectorAll('[data-print]'), function (b) {
     b.addEventListener('click', function () { window.print(); });
   });

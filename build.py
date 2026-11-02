@@ -8,6 +8,7 @@
   python3 build.py --artifact-json <id>   # 自分用Artifactに足す1件のJSON(<は\\u003cに置き換え済み)を表示
 """
 import html
+import urllib.parse
 import json
 import re
 import shutil
@@ -89,6 +90,22 @@ def footer(rel):
             '</div></footer>\n<script src="%sassets/site.js" defer></script>\n</body></html>\n' % (rel, rel, rel))
 
 
+def share_html(path, title):
+    """共有ボタン。外部スクリプトは使わず、各サービスの共有URLへのリンクだけ。"""
+    url = SITE + path
+    q = urllib.parse.quote
+    links = [
+        ("X", "https://twitter.com/intent/tweet?url=%s&text=%s" % (q(url, safe=""), q(title, safe=""))),
+        ("LINE", "https://social-plugins.line.me/lineit/share?url=%s" % q(url, safe="")),
+        ("Facebook", "https://www.facebook.com/sharer/sharer.php?u=%s" % q(url, safe="")),
+    ]
+    a = "".join('<a class="sh-btn" href="%s" target="_blank" rel="noopener noreferrer">%s</a>' % (esc(h), n) for n, h in links)
+    return ('<div class="share noprint" data-share data-url="%s" data-title="%s"><span class="share-t">このページを共有</span>'
+            '<button type="button" class="sh-btn" data-share-native hidden>共有する</button>%s'
+            '<button type="button" class="sh-btn" data-share-copy>リンクをコピー</button>'
+            '<span class="share-ok" role="status" aria-live="polite"></span></div>' % (esc(url), esc(title), a))
+
+
 def thumb_exists(sid):
     return (DOCS / "img" / (sid + ".png")).exists()
 
@@ -163,6 +180,7 @@ def build_research(r):
             '<h1>%s</h1><p class="lead">%s</p><ul class="chips">%s</ul>'
             '<p class="hint">掲載日 %s / 研究の種類:%s</p>'
             % (esc(RES["label"]), esc(r["title"]), esc(r["lead"]), chips, esc(r["date"]), esc(r["design"])))
+    out += share_html(path, r["title"] + " | " + CFG["name"])
     out += '<h2>どんな研究?</h2>' + "".join("<p>%s</p>" % esc(x) for x in r["about"])
     out += '<h2>わかったこと</h2><ul>%s</ul>' % "".join("<li>%s</li>" % esc(x) for x in r["findings"])
     out += '<h2>ふだんの子育てへの活かし方</h2><div class="box ok"><ol class="tips">%s</ol></div>' % "".join(
@@ -174,6 +192,7 @@ def build_research(r):
     out += ('<h2>出典</h2><p class="cite">%s(%d). %s. <i>%s</i>. DOI: %s<br><a href="%s" rel="noopener" target="_blank">論文のページを開く</a></p>'
             % (esc(s["authors"]), s["year"], esc(s["title"]), esc(s["journal"]), esc(s["doi"]), esc(s["url"])))
     out += '<div class="box warn"><p>%s</p></div>' % esc(RES["notice"])
+    out += share_html(path, r["title"] + " | " + CFG["name"])
     items = research_sorted()
     idx = items.index(r)
     nav = ""
@@ -247,6 +266,7 @@ def build_sheet(s, i):
     out += ('<main><div class="wrap"><p class="crumb"><a href="../">ホーム</a> &gt; <a href="./">%s</a> &gt; %s</p>'
             '<h1>%s</h1><p class="lead">%s</p>' % (esc(t["label"]), esc(s["title"]), esc(s["title"]), esc(s["desc"])))
     out += '<div class="actions"><button type="button" class="btn" data-print>このシートを印刷する(A4)</button><span class="hint">印刷画面で、倍率は100%にします。</span></div>'
+    out += share_html(path, s["title"] + " | " + CFG["name"])
     if s["id"] == "name":
         out += ('<div class="box noprint"><label for="nameIn"><b>お子さんの名前(ひらがな)</b></label><br>'
                 '<input id="nameIn" type="text" maxlength="12" placeholder="ひらがなで入力" autocomplete="off" style="font:inherit;font-size:18px;padding:6px 12px;border:1px solid var(--line);border-radius:8px;max-width:100%">'

@@ -77,7 +77,7 @@ for p in pages:
     if not re.search(r"<title>.+</title>", t): err("%s: titleがありません" % rel)
     if 'name="description"' not in t: err("%s: descriptionがありません" % rel)
     if cfg["ga4"] not in t: err("%s: GA4タグがありません" % rel)
-    if re.search(r"共有|拡散|SNS|評価", t): warn("%s: 共有・評価に触れた語があります(公開ページには書かない)" % rel)
+    if re.search(r"拡散|評価", t): warn("%s: 拡散・評価に触れた語があります(公開ページには書かない。共有ボタンは可)" % rel)
     if cfg["ads"].get("placeholder") is False and re.search(r"広告スペース|準備中", t): err("%s: 広告枠の仮表示が残っています" % rel)
     for m in re.findall(r'(?:href|src)="([^"#:]+?)"', t):
         if m.startswith(("http", "mailto")): continue

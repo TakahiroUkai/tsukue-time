@@ -48,6 +48,11 @@ footer.site{border-top:1px solid var(--line);background:var(--panel);padding:18p
 footer.site p{margin:4px 0}
 .hero{background:linear-gradient(180deg,#e4f1f4,#f4f8f9);border-bottom:1px solid var(--line);padding:26px 0 18px}
 .hero p{max-width:40em}
+.share{display:flex;flex-wrap:wrap;align-items:center;gap:8px;margin:14px 0}
+.share-t{font-size:14px;color:var(--muted);margin-right:2px}
+.sh-btn{font:inherit;font-size:14px;font-weight:700;min-height:44px;padding:6px 16px;border:2px solid var(--accent);border-radius:999px;background:var(--panel);color:var(--accent);text-decoration:none;cursor:pointer;display:inline-flex;align-items:center}
+.sh-btn[hidden]{display:none}
+.share-ok{font-size:13px;color:var(--muted)}
 nav.tabs a.rs-link{font-weight:700;color:var(--accent)}
 .article h2{font-size:20px;line-height:1.5;margin:28px 0 10px;border-left:6px solid var(--accent);padding-left:10px}
 .article p,.article li{max-width:46em}

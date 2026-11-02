@@ -10,7 +10,7 @@ cfg = json.loads((ROOT / "config/site.json").read_text(encoding="utf8"))
 sheets = json.loads((ROOT / "data/sheets.json").read_text(encoding="utf8"))["sheets"]
 books = json.loads((ROOT / "data/books.json").read_text(encoding="utf8"))
 tabs = {t["id"] for t in cfg["tabs"]}
-DENY = ["窪田", "稼ぎのトリセツ", "hiragana-town", "ut.0608"]  # 運営者の他の活動・個人情報は公開しない
+DENY = ["窪田", "稼ぎのトリセツ", "hiragana-town", "ut.0608", "2歳と4歳", "2〜4歳", "2歳向け", "4歳向け"]  # 運営者の他の活動・個人情報・お子さんの年齢は公開しない
 
 def err(m): errors.append(m)
 def warn(m): warns.append(m)
@@ -30,6 +30,28 @@ for s in sheets:
     if not (DOCS / "img" / (s["id"] + ".png")).exists(): err("プレビュー画像がありません: %s (python3 build.py --thumbs)" % s["id"])
 for f in (ROOT / "content/sheets").glob("*.html"):
     if f.stem not in ids: warn("manifestに無い断片: " + f.name)
+
+# 子育て研究
+research = json.loads((ROOT / "data/research.json").read_text(encoding="utf8"))["entries"]
+sheet_ids = set(ids)
+rids = [r["id"] for r in research]
+if len(rids) != len(set(rids)): err("研究のidが重複しています")
+ABS = re.compile(r"必ず|絶対|確実に|間違いなく|すれば.{0,6}(伸びる|身につく|治る)|効果がある")
+for r in research:
+    for k in ("id", "date", "title", "lead", "tags", "design", "about", "findings", "athome", "limits", "source"):
+        if not r.get(k): err("研究 %s: %s が空です" % (r.get("id"), k))
+    s = r.get("source", {})
+    for k in ("authors", "title", "journal", "year", "doi", "url"):
+        if not s.get(k): err("研究 %s: source.%s が空です" % (r.get("id"), k))
+    if s.get("url") and not s["url"].startswith("https://"): err("研究 %s: 出典URLがhttpsではありません" % r["id"])
+    for a in r.get("athome", []):
+        if not (a.get("title") and a.get("text")): err("研究 %s: athome に空の項目があります" % r["id"])
+    for i in r.get("related", []):
+        if i not in sheet_ids: err("研究 %s: related の未知のシート %s" % (r["id"], i))
+    body = json.dumps([r.get("lead"), r.get("about"), r.get("findings"), r.get("athome"), r.get("limits")], ensure_ascii=False)
+    for m in ABS.findall(body):
+        warn("研究 %s: 断定的な表現がないか確認してください(%s)" % (r["id"], m if isinstance(m, str) else "".join(m)))
+    if len(r.get("limits", [])) < 2: warn("研究 %s: 『読むときの注意』が少ないです" % r["id"])
 
 # 紹介本: ISBN13 のチェックディジット
 sys.path.insert(0, str(ROOT))

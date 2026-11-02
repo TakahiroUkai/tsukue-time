@@ -48,12 +48,28 @@ footer.site{border-top:1px solid var(--line);background:var(--panel);padding:18p
 footer.site p{margin:4px 0}
 .hero{background:linear-gradient(180deg,#e4f1f4,#f4f8f9);border-bottom:1px solid var(--line);padding:26px 0 18px}
 .hero p{max-width:40em}
+nav.tabs a.rs-link{font-weight:700;color:var(--accent)}
+.article h2{font-size:20px;line-height:1.5;margin:28px 0 10px;border-left:6px solid var(--accent);padding-left:10px}
+.article p,.article li{max-width:46em}
+.article ul{padding-left:22px}
+.box.ok{background:#eef8f1;border-color:#bfdcc8}
+.tips{margin:6px 0;padding-left:22px}
+.tips li{margin:0 0 12px}
+.cite{font-size:14px;color:var(--muted)}
+.rlist{list-style:none;margin:14px 0 0;padding:0;display:grid;gap:12px}
+.rcard{background:var(--panel);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+.rcard a{display:block;color:inherit;text-decoration:none;padding:14px 18px 16px}
+.rcard a:hover .rct{text-decoration:underline}
+.rcard .rcd{font-size:13px;color:var(--muted)}
+.rcard .rct{font-weight:700;font-size:18px;line-height:1.5;margin:2px 0 4px}
+.rcard .rcl{font-size:14px;color:var(--muted);line-height:1.7}
 @media print{
   @page{size:A4;margin:0}
   html,body{background:#fff!important}
   .top,footer.site,.hero,.noprint{display:none!important}
   main .wrap>*{display:none!important}
-  main .wrap>.sheet-wrap{display:block!important}
+  main .wrap>.sheet-wrap,main .wrap>.article{display:block!important}
+  .article .noprint,.article .grid,.article .pn{display:none!important}
   main,.wrap,.sheet-wrap{padding:0!important;margin:0!important;max-width:none!important}
   .sheet{width:210mm!important;height:296mm!important;aspect-ratio:auto!important;box-shadow:none!important;outline:none!important;break-inside:avoid}
   .in::placeholder{color:transparent}

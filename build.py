@@ -19,6 +19,9 @@ DOCS = ROOT / "docs"
 CFG = json.loads((ROOT / "config/site.json").read_text(encoding="utf8"))
 SHEETS = json.loads((ROOT / "data/sheets.json").read_text(encoding="utf8"))["sheets"]
 BOOKS = json.loads((ROOT / "data/books.json").read_text(encoding="utf8"))
+RESEARCH = json.loads((ROOT / "data/research.json").read_text(encoding="utf8"))["entries"]
+RES = CFG["research"]
+SHEET_BY_ID = {s["id"]: s for s in SHEETS}
 TABS = CFG["tabs"]
 TAB = {t["id"]: t for t in TABS}
 SITE = CFG["url"]
@@ -72,8 +75,10 @@ def header(rel, current):
         '<a href="%s%s/"%s>%s</a>' % (rel, t["id"], ' aria-current="page"' if t["id"] == current else "", esc(t["label"]))
         for t in TABS
     )
+    links += '<a href="%sresearch/"%s class="rs-link">%s</a>' % (
+        rel, ' aria-current="page"' if current == "research" else "", esc(RES["label"]))
     return ('<header class="top"><div class="wrap"><a class="brand" href="%s">%s</a>'
-            '<nav class="tabs" aria-label="シートの種類">%s</nav></div></header>\n' % (rel or "./", esc(CFG["name"]), links))
+            '<nav class="tabs" aria-label="コンテンツの種類">%s</nav></div></header>\n' % (rel or "./", esc(CFG["name"]), links))
 
 
 def footer(rel):
@@ -113,6 +118,73 @@ def write(path, text):
     p.write_text(text, encoding="utf8")
 
 
+def research_sorted():
+    return sorted(RESEARCH, key=lambda r: (r["date"], r["id"]), reverse=True)
+
+
+def research_card(r, rel):
+    chips = "".join('<li class="chip">%s</li>' % esc(x) for x in r["tags"])
+    return ('<li class="rcard"><a href="%sresearch/%s.html"><div class="rcd">%s</div><div class="rct">%s</div>'
+            '<div class="rcl">%s</div><ul class="chips">%s</ul></a></li>'
+            % (rel, esc(r["id"]), esc(r["date"]), esc(r["title"]), esc(r["lead"]), chips))
+
+
+def research_block(rel, n):
+    items = research_sorted()[:n]
+    if not items:
+        return ""
+    return ('<h2>子育て研究ノート</h2><p class="lead">%s</p><ul class="rlist">%s</ul>'
+            '<p><a href="%sresearch/">子育て研究の一覧を見る &rarr;</a></p>'
+            % (esc(RES["intro"]), "".join(research_card(r, rel) for r in items), rel))
+
+
+def build_research_index():
+    rel = "../"
+    desc = "幼児の子育てに関わる研究を、出典つきで1つずつ紹介します。研究の内容と、ふだんの暮らしでの活かし方をまとめています。"
+    out = head(RES["label"], desc, rel, "research/")
+    out += header(rel, "research")
+    out += ('<main><div class="wrap"><p class="crumb"><a href="../">ホーム</a> &gt; %s</p><h1>%s</h1><p class="lead">%s</p>'
+            % (esc(RES["label"]), esc(RES["label"]), esc(RES["intro"])))
+    out += '<ul class="rlist">%s</ul>' % "".join(research_card(r, rel) for r in research_sorted())
+    out += '<div class="box warn"><p>%s</p></div>' % esc(RES["notice"])
+    out += "</div></main>" + footer(rel)
+    write("research/index.html", out)
+
+
+def build_research(r):
+    rel = "../"
+    s = r["source"]
+    path = "research/%s.html" % r["id"]
+    out = head(r["title"], r["lead"], rel, path)
+    out += header(rel, "research")
+    chips = "".join('<li class="chip">%s</li>' % esc(x) for x in r["tags"])
+    out += ('<main><div class="wrap"><article class="article">'
+            '<p class="crumb"><a href="../">ホーム</a> &gt; <a href="./">%s</a> &gt; この研究</p>'
+            '<h1>%s</h1><p class="lead">%s</p><ul class="chips">%s</ul>'
+            '<p class="hint">掲載日 %s / 研究の種類:%s</p>'
+            % (esc(RES["label"]), esc(r["title"]), esc(r["lead"]), chips, esc(r["date"]), esc(r["design"])))
+    out += '<h2>どんな研究?</h2>' + "".join("<p>%s</p>" % esc(x) for x in r["about"])
+    out += '<h2>わかったこと</h2><ul>%s</ul>' % "".join("<li>%s</li>" % esc(x) for x in r["findings"])
+    out += '<h2>ふだんの子育てへの活かし方</h2><div class="box ok"><ol class="tips">%s</ol></div>' % "".join(
+        "<li><b>%s</b><br>%s</li>" % (esc(a["title"]), esc(a["text"])) for a in r["athome"])
+    out += '<h2>読むときの注意</h2><ul>%s</ul>' % "".join("<li>%s</li>" % esc(x) for x in r["limits"])
+    rel_sheets = [SHEET_BY_ID[i] for i in r.get("related", []) if i in SHEET_BY_ID]
+    if rel_sheets:
+        out += '<h2>あわせて使えるシート</h2><ul class="grid">%s</ul>' % "".join(card(x, rel) for x in rel_sheets)
+    out += ('<h2>出典</h2><p class="cite">%s(%d). %s. <i>%s</i>. DOI: %s<br><a href="%s" rel="noopener" target="_blank">論文のページを開く</a></p>'
+            % (esc(s["authors"]), s["year"], esc(s["title"]), esc(s["journal"]), esc(s["doi"]), esc(s["url"])))
+    out += '<div class="box warn"><p>%s</p></div>' % esc(RES["notice"])
+    items = research_sorted()
+    idx = items.index(r)
+    nav = ""
+    nav += ('<a href="%s.html">&larr; %s</a>' % (items[idx + 1]["id"], esc(items[idx + 1]["title"]))) if idx + 1 < len(items) else "<span></span>"
+    nav += ('<a href="%s.html">%s &rarr;</a>' % (items[idx - 1]["id"], esc(items[idx - 1]["title"]))) if idx > 0 else ""
+    out += '<div class="pn">%s</div>' % nav
+    out += '<p><a href="./">&larr; %s の一覧にもどる</a></p>' % esc(RES["label"])
+    out += "</article></div></main>" + footer(rel)
+    write(path, out)
+
+
 def build_index():
     rel = ""
     counts = {t["id"]: sum(1 for s in SHEETS if s["tab"] == t["id"]) for t in TABS}
@@ -130,12 +202,14 @@ def build_index():
     else:
         latest = latest[:8]
         latest_title = "新しいシート"
-    desc = "A4で印刷できる、2〜4歳向けの無料シート集です。ぬりえ、なぞり書き、ひらがな表、点つなぎなど%d種類。" % len(SHEETS)
+    desc = "A4で印刷できる、幼児向けの無料シート集です。ぬりえ、なぞり書き、ひらがな表、点つなぎなど%d種類。子育ての研究を紹介するコーナーもあります。" % len(SHEETS)
     out = head(CFG["name"], desc, rel, "", "img/%s.png" % latest[0]["id"] if thumb_exists(latest[0]["id"]) else None)
     out += header(rel, None)
     out += ('<section class="hero"><div class="wrap"><h1>%s</h1><p class="lead">%s。ぬりえ、なぞり書き、ひらがな表、点つなぎなど、全%d種類。印刷ボタンを押すだけでA4で1枚ずつ印刷できます。</p></div></section>'
             % (esc(CFG["name"]), esc(CFG["subtitle"]), len(SHEETS)))
-    out += '<main><div class="wrap"><h2>シートの種類</h2><ul class="grid tabcards">%s</ul>' % tabcards
+    out += '<main><div class="wrap">'
+    out += research_block(rel, 3)
+    out += '<h2>シートの種類</h2><ul class="grid tabcards">%s</ul>' % tabcards
     out += '<h2>%s</h2><ul class="grid">%s</ul>' % (latest_title, "".join(card(s, rel) for s in latest))
     out += ('<h2>印刷のコツ</h2><div class="box"><ul><li>用紙はA4。印刷の設定で、倍率は「100%」または「実際のサイズ」にします。</li>'
             '<li>余白は「なし」か「標準」。プリンターによって端が少し切れることがありますが、シートは周りに余白をとってあります。</li>'
@@ -166,7 +240,7 @@ def build_sheet(s, i):
     idx = same.index(s)
     prev_s = same[idx - 1] if idx > 0 else None
     next_s = same[idx + 1] if idx + 1 < len(same) else None
-    desc = "%s(%s)。A4で無料印刷できる、2〜4歳向けのシートです。" % (s["title"], s["desc"])
+    desc = "%s(%s)。A4で無料印刷できる、幼児向けのシートです。" % (s["title"], s["desc"])
     path = "%s/%s.html" % (s["tab"], s["id"])
     out = head(s["title"], desc, rel, path, ("img/%s.png" % s["id"]) if thumb_exists(s["id"]) else None)
     out += header(rel, s["tab"])
@@ -197,10 +271,11 @@ def build_sheet(s, i):
 
 def build_static_pages():
     rel = ""
-    about = head("このサイトについて", "机タイム素材集は、印刷して使える2〜4歳向けの無料シートを公開しているサイトです。", rel, "about.html")
+    about = head("このサイトについて", "机タイム素材集は、印刷して使える幼児向けの無料シートと、子育ての研究紹介を公開しているサイトです。", rel, "about.html")
     about += header(rel, None)
     about += ('<main><div class="wrap"><h1>このサイトについて</h1>'
               '<p>机タイム素材集は、小さな子どもが机に向かう時間のために、A4で印刷できるシートを公開するサイトです。ぬりえ、なぞり書き、ひらがな表、点つなぎなどを、印刷ボタンひとつで使えるようにしています。</p>'
+              '<h2>子育て研究について</h2><p>幼児の子育てに関わる研究を、論文などの出典つきで紹介しています。研究の内容に加えて、ふだんの暮らしでの活かし方もまとめています。研究結果は、すべての子どもに当てはまるとは限りません。一般的な情報として読み、気になることは、かかりつけ医・保健師・園の先生などにご相談ください。</p>'
               '<h2>素材について</h2><p>シートの絵は、すべて自作のオリジナルです。既存のキャラクターは描いていません。家庭・保育園・教室での印刷にご利用いただけます。再配布や販売はご遠慮ください。</p>'
               '<h2>広告・紹介リンクについて</h2><p>一部のページに、書籍の紹介リンクを載せています。Amazonのアソシエイトとして、適格販売により収入を得ています。紹介する本は、書誌情報を確認したものにしています。</p>'
               '</div></main>')
@@ -224,7 +299,8 @@ def build_assets():
         shutil.copyfile(ROOT / "static" / f, DOCS / "assets" / f)
     (DOCS / ".nojekyll").write_text("", encoding="utf8")
     (DOCS / "robots.txt").write_text("User-agent: *\nAllow: /\nSitemap: %ssitemap.xml\n" % SITE, encoding="utf8")
-    urls = [SITE, SITE + "about.html", SITE + "privacy.html"] + [SITE + t["id"] + "/" for t in TABS] + \
+    urls = [SITE, SITE + "about.html", SITE + "privacy.html"] + [SITE + t["id"] + "/" for t in TABS] + [SITE + "research/"] + \
+           ["%sresearch/%s.html" % (SITE, r["id"]) for r in RESEARCH] + \
            ["%s%s/%s.html" % (SITE, s["tab"], s["id"]) for s in SHEETS]
     sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n%s</urlset>\n' % "".join(
         "<url><loc>%s</loc></url>\n" % esc(u) for u in urls)
@@ -281,6 +357,8 @@ def main():
         return
     ids = [s["id"] for s in SHEETS]
     assert len(ids) == len(set(ids)), "シートのidが重複しています"
+    rids = [r["id"] for r in RESEARCH]
+    assert len(rids) == len(set(rids)), "研究のidが重複しています"
     for s in SHEETS:
         assert s["tab"] in TAB, "未知のタブ: " + s["tab"]
         assert (ROOT / "content/sheets" / (s["id"] + ".html")).exists(), "断片がありません: " + s["id"]
@@ -297,8 +375,11 @@ def main():
         build_tab(t)
     for i, s in enumerate(SHEETS):
         build_sheet(s, i)
+    build_research_index()
+    for r in RESEARCH:
+        build_research(r)
     build_static_pages()
-    print("docs/ を生成しました: シート%d枚" % len(SHEETS))
+    print("docs/ を生成しました: シート%d枚・研究%d件" % (len(SHEETS), len(RESEARCH)))
 
 
 if __name__ == "__main__":

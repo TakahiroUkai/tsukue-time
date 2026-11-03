@@ -15,6 +15,7 @@
 
 ## 取得の注意(2026-11-03 更新)
 
+- web-fetch エージェント経由で、Frontiersの一部(fped.2025.1609714)は権限エラー、jpeds.comは client_error で読めなかった(2026-11-03)。
 - 本文の取得は、1回で約39,000字までしか返らないことがある(それ以降は要約になる)。要約の数字は使わない。続きは offset を指定して取り直す。PMC(pmc.ncbi.nlm.nih.gov)はこの方法で続きを読めた。JAMA(jamanetwork.com)は、同じ位置で切れて続きを読めなかった。
 - JAMA系の論文は、限界の欄などを本文で確かめられないことが多い。選ぶなら、先に続きが読めるか確かめる。読めないときは別の研究にする。
 - PubMed(pubmed.ncbi.nlm.nih.gov)は、本文が空で返ることがあった。書誌の確認には使えないことがある。
@@ -43,9 +44,14 @@
 | 幼児の就寝ルーティン(Mindell, Sleep 2009) | PMCの確認画面で本文を読めなかった |
 | 家族と子どもの食の困りごとの統合レビュー(Frontiers in Pediatrics, 2025) | 対象が1〜14歳で、多くが神経発達症の子。抄録と本文で年齢・数が食い違い、追跡の記述も矛盾。数字は1つだけ |
 | 学齢児の睡眠アプリ ABCs of SLEEPING のパイロット試験(Frontiers in Sleep, 2026) | 対象が6〜12歳で幼児ではない。32人のパイロットで、脱落もあり、活動量計の結果に差なし |
+| 社会性をテーマにした絵本の読み聞かせと向社会行動(Frontiers in Psychology, 2025) | 60人・p=0.036と小さく、本文と表の数字が複数食い違う(性別・一人っ子の人数、共感得点の内訳の合計、媒介分析の計算)。親が介入と評価の両方に関わる |
+| 幼児の画面時間を減らす介入の系統的レビュー(J Prim Care Community Health, 2025) | 8件の質的まとめで画面時間の数字がなく、採択件数の計算が合わない。8件中4件は減少なし |
+| 親子で体を動かすことの壁と助けのメタ統合(Frontiers in Public Health, 2025) | 採択4件で、効果を測っていないのに「効果的」と結論。方法の本文に採択16件という矛盾。対象も3〜11歳 |
+| 新しい植物性食品の繰り返し提供(J Pediatrics, 2026) | 全文を取得できなかった(client_error)。未確認 |
 
 ## 実行ログ
 
 - 2026-11-02: 追加なし(見送り)。上の6件を確認したが、基準を満たす研究がなかった。食事の研究1件はPMCの確認画面で読めなかった。次回は、食事・運動・園生活の分野で、Frontiers、PMC、Natureの全文が読める論文から探す。
 - 2026-11-02(2回目): 追加なし(見送り)。検索語は preschool randomized trial、pretend play / music、vegetables / feeding、outdoor play。全文が読めた5件を確認したが、限界の欄が読めない、表と本文の数字の食い違い、群の差なし、家庭に落とし込めない、のいずれかで基準を満たさなかった。次回は、食事(ベジタブルの繰り返し提供など)や睡眠で、結果が明確な無作為化試験かレビューを、PMC・Frontiersから探す。
 - 2026-11-03(2回目): 追加なし(見送り)。検索語は repeated exposure vegetables toddlers、preschool bedtime routine RCT、Frontiers preschool parents RCT。全文を最後まで読めた2件(上の食の統合レビューと学齢児睡眠アプリ)は基準外。Mindell 2009はPMC確認画面で読めず。次回は、Scientific Reports・BMC・PLOS ONE など出版社の全文ページから、幼児を対象にした無作為化試験かレビューを探す。
+- 2026-11-03(3回目): 追加なし(見送り)。検索語は responsive feeding preschool、shared book reading RCT、systematic review preschool screen / physical activity。全文を読めた3件(上の絵本・画面時間レビュー・親子運動メタ統合)は、本文と表の食い違いや数字の不足で基準外。Frontiers in Pediatrics(fped.2025.1609714)は権限エラーで読めず、J Pediatricsは取得エラー。次回は、Frontiers・PMCで、人数が数百人以上で結果の数字が表と合う無作為化試験を探す。

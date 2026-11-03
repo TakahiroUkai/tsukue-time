@@ -17,6 +17,66 @@
    "tab": "art",
    "title": "ぬりえ 節分(おに)",
    "desc": "くわしい線画・季節"
+  },
+  {
+   "id": "s-newyear-sheep",
+   "tab": "art",
+   "title": "ぬりえ お正月(ひつじ)",
+   "desc": "太い線・季節"
+  },
+  {
+   "id": "s-hinamatsuri",
+   "tab": "art",
+   "title": "ぬりえ ひなまつり(おひなさま)",
+   "desc": "くわしい線画・季節"
+  },
+  {
+   "id": "s-koinobori",
+   "tab": "art",
+   "title": "ぬりえ こどもの日(こいのぼり)",
+   "desc": "くわしい線画・季節"
+  },
+  {
+   "id": "s-tanabata",
+   "tab": "art",
+   "title": "ぬりえ 七夕(ささかざり)",
+   "desc": "くわしい線画・季節"
+  },
+  {
+   "id": "s-yuki-usagi",
+   "tab": "art",
+   "title": "ぬりえ ゆきうさぎ",
+   "desc": "太い線・季節"
+  },
+  {
+   "id": "t-mochi",
+   "tab": "trace",
+   "title": "なぞりがき おもち",
+   "desc": "てんせんをなぞる・季節"
+  },
+  {
+   "id": "d-snowman",
+   "tab": "trace",
+   "title": "てんつなぎ ゆきだるま",
+   "desc": "てんをつなぐ・季節"
+  },
+  {
+   "id": "a-bus",
+   "tab": "art",
+   "title": "ぬりえ バス",
+   "desc": "太い線・のりもの"
+  },
+  {
+   "id": "a-rabbit",
+   "tab": "art",
+   "title": "ぬりえ うさぎ",
+   "desc": "太い線・どうぶつ"
+  },
+  {
+   "id": "t-umbrella",
+   "tab": "trace",
+   "title": "なぞりがき かさ",
+   "desc": "てんせんをなぞる"
   }
  ]
 }

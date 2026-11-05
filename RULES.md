@@ -17,7 +17,7 @@
 
 - `python3 build.py --next` で、data/queue.json の先頭の未掲載の題材(id, tab, title, desc)を選ぶ。何も出なければ、data/queue.json に、まだ無い題材を10件ほど足してから選ぶ。
 - 題材は、季節・行事(その時期の約1〜2か月先を優先。クリスマス、お正月、節分、ひなまつり、こどもの日、七夕など)、幼児向けの身近なもの(のりもの、どうぶつ、たべもの)、なぞり書き・点つなぎ・迷路・数や色のあそびなどから、既存のシートと重ならないようにバランスよく選ぶ(data/sheets.json の既存の題名を見て確かめる)。
-- tab は config/site.json にあるid(cards, kana, abc, art, daily, trace, plan)のどれか。
+- tab は config/site.json にあるid(cards, kana, abc, art, seal, daily, trace, plan)のどれか。
 
 ### シートの作成
 

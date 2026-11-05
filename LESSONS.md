@@ -51,6 +51,10 @@
 | ADHDの子の親向けプログラムの実現可能性試験(PLOS ONE, 2025) | 対象が5〜12歳で幼児ではない。解析n=18で、要旨と本文・表の数字が食い違う |
 | 香港の親教育プログラム(PLOS ONE, 2025) | 子どもの中心は6〜8歳。非ランダム化で、表の信頼区間と係数が合わない |
 | 新しい植物性食品の繰り返し提供(J Pediatrics, 2026) | 全文を取得できなかった(client_error)。未確認 |
+| 保護者向けeヘルス介入 JMIR 2025(Peng ら, 70886) | 脱落が約24%(限界の欄は76%と記載)、要旨の信頼区間が推定値を含まない、群ごとの人数の合計が合わない |
+| EMERGENT オンライン講座試験(Frontiers in Psychology, 2026, 1819302) | 対象が4〜7歳。本文と表・図の人数(456と697)が食い違い、表のCIとp値も複数合わない。限界の節を読めなかった |
+| 就学前のリズムと動きの介入(Behavioral Sciences, 2026) | 直後の測定では差がなく、追跡で40〜60%欠損。表のCIが推定値と合わない |
+| 幼児の画面時間介入のメタ分析(Child Care Health Dev, 2026, cch.70280) | Wileyが client_error で全文を取得できなかった |
 
 ## 実行ログ
 
@@ -59,3 +63,4 @@
 - 2026-11-03(2回目): 追加なし(見送り)。検索語は repeated exposure vegetables toddlers、preschool bedtime routine RCT、Frontiers preschool parents RCT。全文を最後まで読めた2件(上の食の統合レビューと学齢児睡眠アプリ)は基準外。Mindell 2009はPMC確認画面で読めず。次回は、Scientific Reports・BMC・PLOS ONE など出版社の全文ページから、幼児を対象にした無作為化試験かレビューを探す。
 - 2026-11-03(3回目): 追加なし(見送り)。検索語は responsive feeding preschool、shared book reading RCT、systematic review preschool screen / physical activity。全文を読めた3件(上の絵本・画面時間レビュー・親子運動メタ統合)は、本文と表の食い違いや数字の不足で基準外。Frontiers in Pediatrics(fped.2025.1609714)は権限エラーで読めず、J Pediatricsは取得エラー。次回は、Frontiers・PMCで、人数が数百人以上で結果の数字が表と合う無作為化試験を探す。
 - 2026-11-04: 追加なし(見送り)。検索語は parenting tantrums RCT、toddler language conversational turns、PLOS ONE/Sci Rep 2-5 years。上の3件を確認したが基準外。この実行でも add_repo / claude-artifacts のツールは見つからず、非公開Artifactは更新できなかった(未確認:環境の設定)。次回は、先に全文が読める論文の候補を3件以上並べてから、幼児(1〜6歳)の対象かを確かめる。
+- 2026-11-05: 追加あり(PLOS Medicine 2021, Jeong ら。3歳までの親向けプログラムのメタ分析)。検索語は preschool RCT Frontiers、toddlers systematic review、parenting interventions meta-analysis。候補4件は上の表のとおり見送り。PLOS Medicine(journals.plos.org)は web-fetch で offset 39000・78000 まで本文が読め、要旨と本文の数字も一致したので、PLOS系を先に探すとよい(未確認:ほかのPLOS論文も同様か)。この実行でも add_repo / claude-artifacts のツールは見つからなかったが、Artifactツールは使えるか確かめる。

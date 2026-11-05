@@ -85,6 +85,7 @@ def header(rel, current):
 def footer(rel):
     return ('<footer class="site"><div class="wrap">'
             '<p>このサイトのシートは、すべて自作のオリジナルです。家庭・保育園・教室での印刷にご利用いただけます。再配布や販売はご遠慮ください。</p>'
+            '<p>机に向かう時間に:<a href="https://takahiroukai.github.io/tsukue-timer/">丸が小さくなる集中タイマー</a>(作業と休憩の時間を、目で見て分かります)</p>'
             '<p>Amazonのアソシエイトとして、適格販売により収入を得ています。</p>'
             '<p><a href="%sabout.html">このサイトについて</a> / <a href="%sprivacy.html">プライバシーポリシー</a></p>'
             '</div></footer>\n<script src="%sassets/site.js" defer></script>\n</body></html>\n' % (rel, rel, rel))

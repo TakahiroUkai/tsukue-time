@@ -56,6 +56,9 @@
 | 就学前のリズムと動きの介入(Behavioral Sciences, 2026) | 直後の測定では差がなく、追跡で40〜60%欠損。表のCIが推定値と合わない |
 | 幼児の画面時間介入のメタ分析(Child Care Health Dev, 2026, cch.70280) | Wileyが client_error で全文を取得できなかった |
 | 小児科の健診で親に数の遊びを伝える試験(Tomasetto ら, Frontiers in Psychology, 2022) | 子どもの数の力に差なし。親の報告の差も小さく、本文と表の数字が複数食い違う(項目数、分散の割合、人数、年齢)。対照群の4分の1にも助言が届いていた |
+| 絵本の読み聞かせの課題と助けの質的レビュー(Frontiers in Psychology, 2025, 1635956) | 対象が18歳未満で幼児に限られず、質的研究9件のまとめ。限界の欄を本文で確かめられず、著者表記も食い違う |
+| 対話読みが物語る力に与える効果のメタ分析(Frontiers in Psychology, 2025, 1653511) | 効果量の件数(123と117)、人数(2,886と2,202)、I2、p値が本文と表で食い違う。既存の対話読みの記事と分野も近い |
+| 家庭での短い子育て介入の長期追跡(PMC12883591) | PMCの確認画面で読めなかった |
 
 ## 実行ログ
 
@@ -66,3 +69,4 @@
 - 2026-11-04: 追加なし(見送り)。検索語は parenting tantrums RCT、toddler language conversational turns、PLOS ONE/Sci Rep 2-5 years。上の3件を確認したが基準外。この実行でも add_repo / claude-artifacts のツールは見つからず、非公開Artifactは更新できなかった(未確認:環境の設定)。次回は、先に全文が読める論文の候補を3件以上並べてから、幼児(1〜6歳)の対象かを確かめる。
 - 2026-11-05: 追加あり(PLOS Medicine 2021, Jeong ら。3歳までの親向けプログラムのメタ分析)。検索語は preschool RCT Frontiers、toddlers systematic review、parenting interventions meta-analysis。候補4件は上の表のとおり見送り。PLOS Medicine(journals.plos.org)は web-fetch で offset 39000・78000 まで本文が読め、要旨と本文の数字も一致したので、PLOS系を先に探すとよい(未確認:ほかのPLOS論文も同様か)。この実行でも add_repo / claude-artifacts のツールは見つからなかったが、Artifactツールは使えるか確かめる。
 - 2026-11-05(2回目): 追加なし(見送り)。同日に1件追加済み。検索語は number talk preschool、mindfulness parenting stress、preschool RCT toddlers sleep/play/feeding。Frontiers(fpsyg.2022.1051822)は offset 39000・78000 で最後の節まで読めたが基準外。Mindell 2026(frsle.2025.1722530)は見送り済みと同じ研究で、全体に差なしのため選ばず。PLOS ONE(pone.0339009)は RATE_LIMIT_EXCEEDED で読めず(未確認)。次回は、同じ研究を再確認しないよう、見送り表を先に検索結果と照らす。
+- 2026-11-06: 追加なし(見送り)。検索語は randomized trial toddlers preschool PLOS ONE/BMC/Sci Rep、systematic review preschool shared reading/sleep/outdoor、PLOS parenting cluster trial。全文を読めた2件(上の表)は基準外。PMC12883591はreCAPTCHA、PubMed(41941109)は本文が空、PLOS ONE(0323483・0323959・0330597)は RATE_LIMIT_EXCEEDED で読めず(未確認:題材と年齢。並列で取ったことが原因かは未確認)。次回はPLOSを1件ずつ間隔をあけて取る。この実行でも add_repo / claude-artifacts のツールは見つからず、非公開Artifactは更新していない。

@@ -83,6 +83,66 @@
    "tab": "trace",
    "title": "てんつなぎ ツリー",
    "desc": "1〜15・季節"
+  },
+  {
+   "id": "s-xmas-stocking",
+   "tab": "art",
+   "title": "ぬりえ クリスマス(くつした)",
+   "desc": "太い線・季節"
+  },
+  {
+   "id": "s-kadomatsu-trace",
+   "tab": "trace",
+   "title": "なぞりがき かがみもち",
+   "desc": "てんせんをなぞる・季節"
+  },
+  {
+   "id": "d-santa-sleigh",
+   "tab": "trace",
+   "title": "てんつなぎ そり",
+   "desc": "1〜15・季節"
+  },
+  {
+   "id": "s-camellia",
+   "tab": "art",
+   "title": "ぬりえ つばき",
+   "desc": "くわしい線画・季節"
+  },
+  {
+   "id": "a-penguin",
+   "tab": "art",
+   "title": "ぬりえ ペンギン",
+   "desc": "太い線・どうぶつ"
+  },
+  {
+   "id": "a-ambulance",
+   "tab": "art",
+   "title": "ぬりえ きゅうきゅうしゃ",
+   "desc": "太い線・のりもの"
+  },
+  {
+   "id": "t-mikan",
+   "tab": "trace",
+   "title": "なぞりがき みかん",
+   "desc": "てんせんをなぞる・たべもの"
+  },
+  {
+   "id": "d-fish",
+   "tab": "trace",
+   "title": "てんつなぎ さかな",
+   "desc": "1〜12"
+  },
+  {
+   "id": "s-mittens",
+   "tab": "art",
+   "title": "ぬりえ てぶくろ",
+   "desc": "太い線・季節"
+  },
+  {
+   "id": "t-snow",
+   "tab": "trace",
+   "title": "なぞりがき ゆき",
+   "desc": "てんせんをなぞる・季節"
   }
  ]
 }

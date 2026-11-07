@@ -330,6 +330,41 @@
    "added": "2026-11-07"
   },
   {
+   "id": "s-xmas-dino",
+   "tab": "art",
+   "title": "ぬりえ クリスマスのきょうりゅう",
+   "desc": "くわしい線画・季節",
+   "added": "2026-11-07"
+  },
+  {
+   "id": "s-xmas-princess",
+   "tab": "art",
+   "title": "ぬりえ クリスマスのプリンセス",
+   "desc": "くわしい線画・季節",
+   "added": "2026-11-07"
+  },
+  {
+   "id": "s-xmas-truck",
+   "tab": "art",
+   "title": "ぬりえ クリスマスのトラック",
+   "desc": "くわしい線画・季節",
+   "added": "2026-11-07"
+  },
+  {
+   "id": "s-xmas-bear",
+   "tab": "art",
+   "title": "ぬりえ クリスマスのくま",
+   "desc": "くわしい線画・季節",
+   "added": "2026-11-07"
+  },
+  {
+   "id": "s-xmas-shark",
+   "tab": "art",
+   "title": "ぬりえ クリスマスのサメ",
+   "desc": "くわしい線画・季節",
+   "added": "2026-11-07"
+  },
+  {
    "id": "t-lines",
    "tab": "trace",
    "title": "なぞりがき せん",
@@ -418,6 +453,41 @@
    "tab": "trace",
    "title": "てんつなぎ ツリー",
    "desc": "1〜15・季節",
+   "added": "2026-11-07"
+  },
+  {
+   "id": "d-xmas-dino",
+   "tab": "trace",
+   "title": "てんつなぎ きょうりゅう",
+   "desc": "1〜19・クリスマス",
+   "added": "2026-11-07"
+  },
+  {
+   "id": "d-xmas-princess",
+   "tab": "trace",
+   "title": "てんつなぎ ティアラとドレス",
+   "desc": "1〜18・クリスマス",
+   "added": "2026-11-07"
+  },
+  {
+   "id": "d-xmas-truck",
+   "tab": "trace",
+   "title": "てんつなぎ トラック",
+   "desc": "1〜16・クリスマス",
+   "added": "2026-11-07"
+  },
+  {
+   "id": "d-xmas-penguin",
+   "tab": "trace",
+   "title": "てんつなぎ ペンギン",
+   "desc": "1〜20・クリスマス",
+   "added": "2026-11-07"
+  },
+  {
+   "id": "d-xmas-shark",
+   "tab": "trace",
+   "title": "てんつなぎ サメ",
+   "desc": "1〜18・クリスマス",
    "added": "2026-11-07"
   },
   {
@@ -636,6 +706,41 @@
    "title": "シールアート じゆうに つくろう",
    "desc": "丸だけの台紙・すきな絵を",
    "added": "2026-11-05"
+  },
+  {
+   "id": "seal-xmas-dino",
+   "tab": "seal",
+   "title": "シールアート クリスマスのきょうりゅう",
+   "desc": "丸シール用・色のめやす付き・季節",
+   "added": "2026-11-07"
+  },
+  {
+   "id": "seal-xmas-princess",
+   "tab": "seal",
+   "title": "シールアート クリスマスのプリンセス",
+   "desc": "丸シール用・色のめやす付き・季節",
+   "added": "2026-11-07"
+  },
+  {
+   "id": "seal-xmas-truck",
+   "tab": "seal",
+   "title": "シールアート クリスマスのトラック",
+   "desc": "丸シール用・色のめやす付き・季節",
+   "added": "2026-11-07"
+  },
+  {
+   "id": "seal-xmas-reindeer",
+   "tab": "seal",
+   "title": "シールアート クリスマスのトナカイ",
+   "desc": "丸シール用・色のめやす付き・季節",
+   "added": "2026-11-07"
+  },
+  {
+   "id": "seal-xmas-shark",
+   "tab": "seal",
+   "title": "シールアート クリスマスのサメ",
+   "desc": "丸シール用・色のめやす付き・季節",
+   "added": "2026-11-07"
   }
  ]
 }

@@ -66,6 +66,9 @@
 | 親が行う幼児の睡眠問題のテレヘルス試験(Shiels ら, Br J Clin Psychol, 2026, bjc.70001 / PMC13456478) | PMCは確認画面、Wileyは client_error で本文を読めなかった |
 | 親向け24時間の動きの介入試験(PMC11385828) | PMCの確認画面で読めなかった |
 | 幼児の睡眠の研究(Frontiers in Sleep, frsle.2025.1665671) | 権限(PROVENANCE_REQUIRED)で読めなかった。未確認 |
+| 幼児の画面時間を減らすプログラムの無作為化試験(PMC11223730, 2024) | PMCが権限(PROVENANCE_REQUIRED)で読めなかった。未確認 |
+| 幼児の運動介入と体力のメタ分析(BMC Public Health, 2025, s12889-025-24156-3) | BMC/Springerがcookieエラーのリダイレクトで読めなかった。未確認 |
+| 親子の感情の乱れの瞬間評価(Berkowitz ら, PLOS ONE, 2025, pone.0327179) | 観察研究で、解析は89人(登録635人から)。アプリ設計のための項目選びが主目的で、家庭での活かし方に落とし込みにくい |
 
 ## 実行ログ
 
@@ -79,3 +82,4 @@
 - 2026-11-06: 追加なし(見送り)。検索語は randomized trial toddlers preschool PLOS ONE/BMC/Sci Rep、systematic review preschool shared reading/sleep/outdoor、PLOS parenting cluster trial。全文を読めた2件(上の表)は基準外。PMC12883591はreCAPTCHA、PubMed(41941109)は本文が空、PLOS ONE(0323483・0323959・0330597)は RATE_LIMIT_EXCEEDED で読めず(未確認:題材と年齢。並列で取ったことが原因かは未確認)。次回はPLOSを1件ずつ間隔をあけて取る。この実行でも add_repo / claude-artifacts のツールは見つからず、非公開Artifactは更新していない。
 - 2026-11-06(2回目): 追加なし(見送り)。検索語は preschool physical activity RCT、picky eating meta-analysis、preschool sleep cohort、PLOS 2-5 years parenting。全文を読めた3件(上の表)は基準外。PMC8431657はreCAPTCHA、Frontiers in Public Health(fpubh.2025.1592098)は権限(PROVENANCE_REQUIRED)で読めず、PubMed(40538170)は client_error(いずれも未確認)。web-fetch エージェントはPLOS・Frontiers(Sleep)・MDPIで本文を最後近くまで読めた。この実行でも add_repo / claude-artifacts のツールは見つからず、非公開Artifactは更新していない。次回は、幼児(1〜6歳)で、無作為化の大規模試験かメタ分析を、PLOS・MDPI・Frontiersから、候補を並べてから探す。
 - 2026-11-07: 追加なし(見送り)。検索語は preschool RCT sleep/nap/physical activity、toddler vegetable responsive feeding、screen time language meta-analysis、outdoor/free play executive function、Sci Rep/BMC/PLOS 2-5 years。全文を最後まで読めたのは Chen 2025 の1件のみで基準外。PMC(2件)・Wiley・Frontiers in Sleep は読めず。Frontiersの心理学は offset 0・39000・78000 で最後まで読めた。この実行でも add_repo / claude-artifacts のツールは見つからず、非公開Artifactは更新していない。次回は、検索結果に出た時点で題名・年齢・デザインを見て、幼児が対象のRCT/メタ分析に絞ってから本文を取る。
+- 2026-11-07(2回目): 追加なし(見送り)。検索語は PLOS ONE RCT toddlers 2-5 years、preschool meta-analysis sleep/picky eating/physical activity。候補は上の3件で、PMC・BMCは読めず、PLOSの1件は観察研究で小規模。PLOS ONE(pone.0338422)は RATE_LIMIT_EXCEEDED(未確認)。web-fetchは並列にせず、1件ずつ取るとPLOSは読めた。この実行でも add_repo / claude-artifacts のツールは見つからず、Artifactは更新していない。次回は、PLOS・Frontiersの全文ページで、幼児対象のRCT/メタ分析を先に3件並べてから取る。

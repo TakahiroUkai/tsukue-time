@@ -27,6 +27,10 @@ TABS = CFG["tabs"]
 TAB = {t["id"]: t for t in TABS}
 SITE = CFG["url"]
 TODAY_FALLBACK = "2026-11-01"
+# トップの「いまの季節のシート」に出すシートのid(季節が変わったら入れ替える)
+SEASON_TITLE = "いまの季節のシート(クリスマス・お正月)"
+SEASON_IDS = ["s-xmas", "s-christmas-wreath", "s-xmas-stocking", "seal-xmas", "d-tree",
+              "s-newyear", "s-newyear-sheep", "t-mochi"]
 
 esc = html.escape
 
@@ -230,6 +234,10 @@ def build_index():
     out += '<main><div class="wrap">'
     out += '<h2>シートの種類</h2><ul class="grid tabcards">%s</ul>' % tabcards
     out += '<h2>%s</h2><ul class="grid">%s</ul>' % (latest_title, "".join(card(s, rel) for s in latest))
+    shown = {s["id"] for s in latest}
+    season = [SHEET_BY_ID[i] for i in SEASON_IDS if i in SHEET_BY_ID and i not in shown][:6]
+    if season:
+        out += '<h2>%s</h2><ul class="grid">%s</ul>' % (SEASON_TITLE, "".join(card(s, rel) for s in season))
     out += research_block(rel, 3)
     out += ('<h2>印刷のコツ</h2><div class="box"><ul><li>用紙はA4。印刷の設定で、倍率は「100%」または「実際のサイズ」にします。</li>'
             '<li>余白は「なし」か「標準」。プリンターによって端が少し切れることがありますが、シートは周りに余白をとってあります。</li>'
@@ -285,6 +293,12 @@ def build_sheet(s, i):
     if next_s:
         nav += '<a href="%s.html">%s &rarr;</a>' % (next_s["id"], esc(next_s["title"]))
     out += '<div class="pn">%s</div>' % nav
+    others = [x for x in same if x is not s]
+    # 近い順(同じタブの前後)に最大4枚
+    others.sort(key=lambda x: abs(same.index(x) - idx))
+    others = others[:4]
+    if others:
+        out += '<h2 class="noprint">同じ種類のほかのシート</h2><ul class="grid noprint">%s</ul>' % "".join(card(x, rel) for x in others)
     out += '<p><a href="./">&larr; %s の一覧にもどる</a></p>' % esc(t["label"])
     out += "</div></main>" + footer(rel)
     write(path, out)

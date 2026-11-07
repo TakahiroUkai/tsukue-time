@@ -228,9 +228,9 @@ def build_index():
     out += ('<section class="hero"><div class="wrap"><h1>%s</h1><p class="lead">%s。ぬりえ、なぞり書き、ひらがな表、点つなぎなど、全%d種類。印刷ボタンを押すだけでA4で1枚ずつ印刷できます。</p></div></section>'
             % (esc(CFG["name"]), esc(CFG["subtitle"]), len(SHEETS)))
     out += '<main><div class="wrap">'
-    out += research_block(rel, 3)
     out += '<h2>シートの種類</h2><ul class="grid tabcards">%s</ul>' % tabcards
     out += '<h2>%s</h2><ul class="grid">%s</ul>' % (latest_title, "".join(card(s, rel) for s in latest))
+    out += research_block(rel, 3)
     out += ('<h2>印刷のコツ</h2><div class="box"><ul><li>用紙はA4。印刷の設定で、倍率は「100%」または「実際のサイズ」にします。</li>'
             '<li>余白は「なし」か「標準」。プリンターによって端が少し切れることがありますが、シートは周りに余白をとってあります。</li>'
             '<li>色はモノクロで十分です。ぬりえはコピー用紙でも使えます。</li></ul></div></div></main>')

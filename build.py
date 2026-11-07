@@ -22,6 +22,7 @@ SHEETS = json.loads((ROOT / "data/sheets.json").read_text(encoding="utf8"))["she
 BOOKS = json.loads((ROOT / "data/books.json").read_text(encoding="utf8"))
 RESEARCH = json.loads((ROOT / "data/research.json").read_text(encoding="utf8"))["entries"]
 RES = CFG["research"]
+TI = json.loads((ROOT / "data/tisensei.json").read_text(encoding="utf8"))
 SHEET_BY_ID = {s["id"]: s for s in SHEETS}
 TABS = CFG["tabs"]
 TAB = {t["id"]: t for t in TABS}
@@ -82,6 +83,8 @@ def header(rel, current):
     )
     links += '<a href="%sresearch/"%s class="rs-link">%s</a>' % (
         rel, ' aria-current="page"' if current == "research" else "", esc(RES["label"]))
+    links += '<a href="%sti-sensei/"%s class="rs-link">%s</a>' % (
+        rel, ' aria-current="page"' if current == "ti-sensei" else "", esc(TI["short"]))
     return ('<header class="top"><div class="wrap"><a class="brand" href="%s">%s</a>'
             '<nav class="tabs" aria-label="コンテンツの種類">%s</nav></div></header>\n' % (rel or "./", esc(CFG["name"]), links))
 
@@ -209,6 +212,46 @@ def build_research(r):
     write(path, out)
 
 
+def ext_a(url, label, cls=""):
+    return '<a href="%s"%s rel="noopener noreferrer" target="_blank">%s</a>' % (esc(url), (' class="%s"' % cls) if cls else "", esc(label))
+
+
+def build_tisensei():
+    rel = "../"
+    path = "ti-sensei/"
+    out = head(TI["title"], TI["lead"], rel, path)
+    out += header(rel, "ti-sensei")
+    out += ('<main><div class="wrap"><article class="article"><p class="crumb"><a href="../">ホーム</a> &gt; %s</p>'
+            '<h1>%s</h1><p class="lead">%s</p><div class="box warn"><p>%s</p></div>'
+            % (esc(TI["label"]), esc(TI["label"]), esc(TI["lead"]), esc(TI["unofficial"])))
+    out += share_html(path, TI["label"] + " | " + CFG["name"])
+    out += '<h2>てぃ先生のこと</h2><ul>%s</ul>' % "".join(
+        "<li>%s<span class=\"hint\">(出典:%s)</span></li>" % (esc(x["text"]), ext_a(x["url"], x["src"])) for x in TI["profile"])
+    out += '<h2>公式のホームページ・SNS</h2><ul class="tilinks">%s</ul><p class="hint">%s</p>' % (
+        "".join('<li><a class="tl" href="%s" rel="noopener noreferrer" target="_blank"><span class="tn">%s</span><span class="th">%s</span>'
+                '<span class="td">%s</span></a></li>' % (esc(x["url"]), esc(x["name"]), esc(x["handle"]), esc(x["desc"])) for x in TI["links"]),
+        esc(TI["links_note"]))
+    out += '<h2>本</h2><p class="hint">%s</p>' % esc(TI["books_note"])
+    for g in TI["books_groups"]:
+        lis = "".join(
+            '<li><div class="bt"><a href="%s" rel="sponsored nofollow noopener" target="_blank">%s</a></div>'
+            '<div class="bm">%s(%s・%s)</div></li>'
+            % (esc(amazon_url(b["isbn"])), esc(b["title"]), esc(b["author"]), esc(b["publisher"]), esc(b["date"])) for b in g["books"])
+        out += '<h3>%s</h3><ul class="books">%s</ul>' % (esc(g["name"]), lis)
+    out += '<h2>出演しているテレビ番組</h2><ul class="tvlist">%s</ul><p class="hint">%s</p><p>%s</p>' % (
+        "".join('<li><div class="bt">%s</div><div class="bm">%s(出典:%s)</div></li>'
+                % (esc(x["title"]), esc(x["meta"]), ext_a(x["url"], x["src"])) for x in TI["tv"]),
+        esc(TI["tv_note"]), ext_a(TI["tv_more"]["url"], TI["tv_more"]["name"]) + "へ")
+    out += '<h2>動画・イベント</h2><ul class="tvlist">%s</ul>' % "".join(
+        '<li><div class="bt">%s</div><div class="bm">%s(出典:%s)</div></li>' % (esc(x["title"]), esc(x["meta"]), ext_a(x["url"], x["src"])) for x in TI["web"])
+    out += '<h2>見るときのヒント</h2><div class="box ok"><ol>%s</ol></div>' % "".join("<li>%s</li>" % esc(h) for h in TI["howto"])
+    out += '<div class="box warn"><p>%s</p></div>' % esc(TI["notice"])
+    out += share_html(path, TI["label"] + " | " + CFG["name"])
+    out += '<p><a href="../">&larr; 机タイム素材集のトップにもどる</a></p>'
+    out += "</article></div></main>" + footer(rel)
+    write("ti-sensei/index.html", out)
+
+
 def build_index():
     rel = ""
     counts = {t["id"]: sum(1 for s in SHEETS if s["tab"] == t["id"]) for t in TABS}
@@ -238,6 +281,8 @@ def build_index():
     season = [SHEET_BY_ID[i] for i in SEASON_IDS if i in SHEET_BY_ID and i not in shown][:6]
     if season:
         out += '<h2>%s</h2><ul class="grid">%s</ul>' % (SEASON_TITLE, "".join(card(s, rel) for s in season))
+    out += ('<h2>%s</h2><ul class="grid tabcards"><li class="card"><a href="ti-sensei/"><div class="b"><div class="t">%s</div>'
+            '<div class="d">%s</div></div></a></li></ul>' % (esc(TI["short"]), esc(TI["label"]), esc(TI["lead"])))
     out += research_block(rel, 3)
     out += ('<h2>印刷のコツ</h2><div class="box"><ul><li>用紙はA4。印刷の設定で、倍率は「100%」または「実際のサイズ」にします。</li>'
             '<li>余白は「なし」か「標準」。プリンターによって端が少し切れることがありますが、シートは周りに余白をとってあります。</li>'
@@ -334,7 +379,7 @@ def build_assets():
         shutil.copyfile(ROOT / "static" / f, DOCS / "assets" / f)
     (DOCS / ".nojekyll").write_text("", encoding="utf8")
     (DOCS / "robots.txt").write_text("User-agent: *\nAllow: /\nSitemap: %ssitemap.xml\n" % SITE, encoding="utf8")
-    urls = [SITE, SITE + "about.html", SITE + "privacy.html"] + [SITE + t["id"] + "/" for t in TABS] + [SITE + "research/"] + \
+    urls = [SITE, SITE + "about.html", SITE + "privacy.html"] + [SITE + t["id"] + "/" for t in TABS] + [SITE + "research/", SITE + "ti-sensei/"] + \
            ["%sresearch/%s.html" % (SITE, r["id"]) for r in RESEARCH] + \
            ["%s%s/%s.html" % (SITE, s["tab"], s["id"]) for s in SHEETS]
     sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n%s</urlset>\n' % "".join(
@@ -411,6 +456,7 @@ def main():
     for i, s in enumerate(SHEETS):
         build_sheet(s, i)
     build_research_index()
+    build_tisensei()
     for r in RESEARCH:
         build_research(r)
     build_static_pages()

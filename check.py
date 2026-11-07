@@ -66,6 +66,20 @@ for tab, items in books.items():
         for k in ("title", "author", "publisher", "isbn"):
             if not it.get(k): err("books[%s]: %s が空です" % (tab, k))
 
+
+# てぃ先生 特設ページ
+ti = json.loads((ROOT / "data/tisensei.json").read_text(encoding="utf8"))
+for key in ("links", "tv", "web", "profile"):
+    for it in ti.get(key, []):
+        if not it.get("url", "").startswith(("https://", "http://")): err("tisensei.%s: URLが不正です %s" % (key, it.get("url")))
+for g in ti.get("books_groups", []):
+    for it in g["books"]:
+        try: b.isbn13_to_10(it["isbn"])
+        except Exception as e: err("tisensei 本 %s: %s" % (it.get("title"), e))
+        for k in ("title", "author", "publisher", "date", "isbn"):
+            if not it.get(k): err("tisensei 本: %s が空です" % k)
+if not ti.get("unofficial"): err("tisensei: 非公式の表示がありません")
+
 # 生成物
 pages = list(DOCS.rglob("*.html"))
 if not pages: err("docs/ が空です。python3 build.py を実行してください")

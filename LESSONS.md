@@ -62,6 +62,10 @@
 | 就学前の身体リテラシー介入の実現可能性試験(Int J Environ Res Public Health, 2025, ijerph22121861) | 4園の試験で、主要な運動の結果は多くが差なし(静止の動きだけ差)。本文の割合と人数が合わない箇所があり、表を確かめられない |
 | 学齢児向けの短い睡眠介入のパイロット(Frontiers in Sleep, 2026, frsle.2026.1731331) | 対象が5〜11歳で幼児ではない。対照群なし。本文と表の数字の食い違いが10か所以上 |
 | 親向けデジタル子育て介入のクラスタ試験(PLOS Digital Health, 2026, pdig.0001357) | 1園・21クラスで自己報告のみ。追跡で脱落が約42%(待機群は追跡せず)。対象者の内訳の人数が合わない。要旨の「持続」は群間で確かめられていない |
+| 幼児の身体活動と実行機能、睡眠の問題の媒介(Chen ら, Frontiers in Psychology, 2025, fpsyg.2025.1606776) | 横断研究で因果を言えず、対象年齢が本文に書かれていない。対象の約34%が解析から外れ、実行機能も睡眠も親の報告。本文と表の食い違い(p値、相関の方法、共変量の調整の有無)があり、結論が因果に言い過ぎ |
+| 親が行う幼児の睡眠問題のテレヘルス試験(Shiels ら, Br J Clin Psychol, 2026, bjc.70001 / PMC13456478) | PMCは確認画面、Wileyは client_error で本文を読めなかった |
+| 親向け24時間の動きの介入試験(PMC11385828) | PMCの確認画面で読めなかった |
+| 幼児の睡眠の研究(Frontiers in Sleep, frsle.2025.1665671) | 権限(PROVENANCE_REQUIRED)で読めなかった。未確認 |
 
 ## 実行ログ
 
@@ -74,3 +78,4 @@
 - 2026-11-05(2回目): 追加なし(見送り)。同日に1件追加済み。検索語は number talk preschool、mindfulness parenting stress、preschool RCT toddlers sleep/play/feeding。Frontiers(fpsyg.2022.1051822)は offset 39000・78000 で最後の節まで読めたが基準外。Mindell 2026(frsle.2025.1722530)は見送り済みと同じ研究で、全体に差なしのため選ばず。PLOS ONE(pone.0339009)は RATE_LIMIT_EXCEEDED で読めず(未確認)。次回は、同じ研究を再確認しないよう、見送り表を先に検索結果と照らす。
 - 2026-11-06: 追加なし(見送り)。検索語は randomized trial toddlers preschool PLOS ONE/BMC/Sci Rep、systematic review preschool shared reading/sleep/outdoor、PLOS parenting cluster trial。全文を読めた2件(上の表)は基準外。PMC12883591はreCAPTCHA、PubMed(41941109)は本文が空、PLOS ONE(0323483・0323959・0330597)は RATE_LIMIT_EXCEEDED で読めず(未確認:題材と年齢。並列で取ったことが原因かは未確認)。次回はPLOSを1件ずつ間隔をあけて取る。この実行でも add_repo / claude-artifacts のツールは見つからず、非公開Artifactは更新していない。
 - 2026-11-06(2回目): 追加なし(見送り)。検索語は preschool physical activity RCT、picky eating meta-analysis、preschool sleep cohort、PLOS 2-5 years parenting。全文を読めた3件(上の表)は基準外。PMC8431657はreCAPTCHA、Frontiers in Public Health(fpubh.2025.1592098)は権限(PROVENANCE_REQUIRED)で読めず、PubMed(40538170)は client_error(いずれも未確認)。web-fetch エージェントはPLOS・Frontiers(Sleep)・MDPIで本文を最後近くまで読めた。この実行でも add_repo / claude-artifacts のツールは見つからず、非公開Artifactは更新していない。次回は、幼児(1〜6歳)で、無作為化の大規模試験かメタ分析を、PLOS・MDPI・Frontiersから、候補を並べてから探す。
+- 2026-11-07: 追加なし(見送り)。検索語は preschool RCT sleep/nap/physical activity、toddler vegetable responsive feeding、screen time language meta-analysis、outdoor/free play executive function、Sci Rep/BMC/PLOS 2-5 years。全文を最後まで読めたのは Chen 2025 の1件のみで基準外。PMC(2件)・Wiley・Frontiers in Sleep は読めず。Frontiersの心理学は offset 0・39000・78000 で最後まで読めた。この実行でも add_repo / claude-artifacts のツールは見つからず、非公開Artifactは更新していない。次回は、検索結果に出た時点で題名・年齢・デザインを見て、幼児が対象のRCT/メタ分析に絞ってから本文を取る。

@@ -24,6 +24,7 @@
 - PMC(PMC2675894, Mindell 2009)は、2026-11-03にもreCAPTCHA画面が返った。PMCの確認画面は再現するので、Frontiersなど出版社の全文ページを先に探す。
 - Frontiersは、offset 39,000字付近・78,000字付近で取り直せば、本文の最後(限界・結論)まで読めた(2026-11-03)。
 - この実行環境では WebFetch を直接使えず、web-fetch エージェント経由になる。add_repo / claude-artifacts のツールは見つからなかった(未確認:環境の設定)。
+- Cambridge Core の core-reader ページ(cambridge.org/core/product/.../core-reader)は、offset 0 のあと offset 117000 で取り直すと、本文の最後(限界・結論)まで逐語で読めた(2026-11-08)。PAR(par.nsf.gov)のURLは、別の論文が返ることがあった。
 - ニュース記事や学会抄録の報道は、一次情報ではない。選ばない。
 
 ## 見送った候補
@@ -69,6 +70,8 @@
 | 幼児の画面時間を減らすプログラムの無作為化試験(PMC11223730, 2024) | PMCが権限(PROVENANCE_REQUIRED)で読めなかった。未確認 |
 | 幼児の運動介入と体力のメタ分析(BMC Public Health, 2025, s12889-025-24156-3) | BMC/Springerがcookieエラーのリダイレクトで読めなかった。未確認 |
 | 親子の感情の乱れの瞬間評価(Berkowitz ら, PLOS ONE, 2025, pone.0327179) | 観察研究で、解析は89人(登録635人から)。アプリ設計のための項目選びが主目的で、家庭での活かし方に落とし込みにくい |
+| 親の感情表現と子どもの語りの系統的レビュー(Frontiers in Psychology, 2025, fpsyg.2025.1629744) | 対象年齢の定義がなく、本文の主要6件の一部が幼児でない。限界の節がなく、表と本文で国・年が食い違い、結論が因果に言い過ぎ |
+| 学校での負傷予防の集団無作為化試験(Frontiers in Public Health, 2026, fpubh.2026.1733074) | 対象が6〜17歳で幼児ではない。主要結果の信頼区間が推定値を含まない |
 
 ## 実行ログ
 
@@ -83,3 +86,4 @@
 - 2026-11-06(2回目): 追加なし(見送り)。検索語は preschool physical activity RCT、picky eating meta-analysis、preschool sleep cohort、PLOS 2-5 years parenting。全文を読めた3件(上の表)は基準外。PMC8431657はreCAPTCHA、Frontiers in Public Health(fpubh.2025.1592098)は権限(PROVENANCE_REQUIRED)で読めず、PubMed(40538170)は client_error(いずれも未確認)。web-fetch エージェントはPLOS・Frontiers(Sleep)・MDPIで本文を最後近くまで読めた。この実行でも add_repo / claude-artifacts のツールは見つからず、非公開Artifactは更新していない。次回は、幼児(1〜6歳)で、無作為化の大規模試験かメタ分析を、PLOS・MDPI・Frontiersから、候補を並べてから探す。
 - 2026-11-07: 追加なし(見送り)。検索語は preschool RCT sleep/nap/physical activity、toddler vegetable responsive feeding、screen time language meta-analysis、outdoor/free play executive function、Sci Rep/BMC/PLOS 2-5 years。全文を最後まで読めたのは Chen 2025 の1件のみで基準外。PMC(2件)・Wiley・Frontiers in Sleep は読めず。Frontiersの心理学は offset 0・39000・78000 で最後まで読めた。この実行でも add_repo / claude-artifacts のツールは見つからず、非公開Artifactは更新していない。次回は、検索結果に出た時点で題名・年齢・デザインを見て、幼児が対象のRCT/メタ分析に絞ってから本文を取る。
 - 2026-11-07(2回目): 追加なし(見送り)。検索語は PLOS ONE RCT toddlers 2-5 years、preschool meta-analysis sleep/picky eating/physical activity。候補は上の3件で、PMC・BMCは読めず、PLOSの1件は観察研究で小規模。PLOS ONE(pone.0338422)は RATE_LIMIT_EXCEEDED(未確認)。web-fetchは並列にせず、1件ずつ取るとPLOSは読めた。この実行でも add_repo / claude-artifacts のツールは見つからず、Artifactは更新していない。次回は、PLOS・Frontiersの全文ページで、幼児対象のRCT/メタ分析を先に3件並べてから取る。
+- 2026-11-08: 追加あり(Journal of Child Language 2026, Coffey & Snedeker。保護者の話しかけとことばの関連のメタ分析)。検索語は preschool RCT emotion regulation、caregiver speech language meta-analysis など。候補3件のうち上の2件は見送り。web-fetch を1件ずつ、本文の後半は offset を指定して取り直すと、限界と結論まで逐語で読めた。この実行でも add_repo / claude-artifacts のツールは見つからなかった(Artifactツールは別途確認)。

@@ -73,3 +73,12 @@
     b.addEventListener('click', function () { window.print(); });
   });
 })();
+
+/* 狭い画面でタブが横に並ぶとき、いま開いているタブが見えるようにする */
+(function () {
+  try {
+    var cur = document.querySelector('nav.tabs a[aria-current="page"]');
+    var nav = cur && cur.parentNode;
+    if (nav && nav.scrollWidth > nav.clientWidth) nav.scrollLeft = Math.max(0, cur.offsetLeft - 16);
+  } catch (e) {}
+})();

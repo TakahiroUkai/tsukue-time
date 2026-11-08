@@ -91,3 +91,13 @@ nav.tabs a.rs-link{font-weight:700;color:var(--accent)}
 .tvlist li{background:#fafcfc;border:1px solid var(--line);border-radius:10px;padding:10px 14px}
 .tvlist .bt{font-weight:700}
 .tvlist .bm{font-size:13px;color:var(--muted)}
+
+.othertabs{list-style:none;margin:12px 0 0;padding:0;display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,150px),1fr));gap:8px}
+.othertabs a{display:flex;justify-content:space-between;align-items:center;gap:8px;min-height:44px;padding:8px 12px;background:var(--panel);border:1px solid var(--line);border-radius:10px;color:var(--ink);text-decoration:none;font-size:15px;line-height:1.4}
+.othertabs a:hover{border-color:var(--accent)}
+.othertabs span{color:var(--muted);font-size:12px;white-space:nowrap}
+@media (max-width:600px){
+  nav.tabs{flex-wrap:nowrap;overflow-x:auto;width:100%;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
+  nav.tabs a{white-space:nowrap;flex:0 0 auto}
+}
+@media print{.othertabs{display:none!important}}

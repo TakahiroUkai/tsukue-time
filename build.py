@@ -154,6 +154,17 @@ def research_card(r, rel):
             % (rel, esc(r["id"]), esc(r["date"]), esc(r["title"]), esc(r["lead"]), chips))
 
 
+def other_tabs(rel, current_tab, noprint=False):
+    """ほかの種類のシートへの行き先(タブ・シートのページの終わりに置く)。"""
+    lis = "".join(
+        '<li><a href="%s%s/">%s<span>%d枚</span></a></li>'
+        % (rel, t["id"], esc(t["label"]), sum(1 for x in SHEETS if x["tab"] == t["id"]))
+        for t in TABS if t["id"] != current_tab)
+    lis += '<li><a href="%sresearch/">%s<span>読みもの</span></a></li>' % (rel, esc(RES["label"]))
+    return '<h2%s>ほかの種類のシートも見る</h2><ul class="othertabs%s">%s</ul>' % (
+        ' class="noprint"' if noprint else "", " noprint" if noprint else "", lis)
+
+
 def research_block(rel, n):
     items = research_sorted()[:n]
     if not items:
@@ -301,6 +312,7 @@ def build_tab(t):
     out += '<ul class="grid">%s</ul>' % "".join(card(s, rel) for s in items)
     out += '<h2>使い方</h2><div class="box"><ol>%s</ol></div>' % "".join("<li>%s</li>" % esc(h) for h in t["howto"])
     out += books_html(t["id"])
+    out += other_tabs(rel, t["id"])
     out += "</div></main>" + footer(rel)
     write(t["id"] + "/index.html", out)
 
@@ -344,6 +356,7 @@ def build_sheet(s, i):
     others = others[:4]
     if others:
         out += '<h2 class="noprint">同じ種類のほかのシート</h2><ul class="grid noprint">%s</ul>' % "".join(card(x, rel) for x in others)
+    out += other_tabs(rel, s["tab"], noprint=True)
     out += '<p><a href="./">&larr; %s の一覧にもどる</a></p>' % esc(t["label"])
     out += "</div></main>" + footer(rel)
     write(path, out)

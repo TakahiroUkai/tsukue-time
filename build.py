@@ -302,6 +302,18 @@ def build_index():
     write("index.html", out)
 
 
+TAB_USE = {
+    "cards": "切って遊べる絵カードです",
+    "kana": "ひらがな・数字に親しむ練習に使えます",
+    "abc": "アルファベットに親しむ練習に使えます",
+    "art": "おうちでぬりえを楽しめます",
+    "seal": "丸シールを貼って絵をつくれます",
+    "daily": "毎日少しずつ続けるときに使えます",
+    "trace": "鉛筆の持ち方や線の練習に使えます",
+    "plan": "1週間の予定やお手紙づくりに使えます",
+}
+
+
 def build_tab(t):
     rel = "../"
     items = [s for s in SHEETS if s["tab"] == t["id"]]
@@ -325,7 +337,8 @@ def build_sheet(s, i):
     idx = same.index(s)
     prev_s = same[idx - 1] if idx > 0 else None
     next_s = same[idx + 1] if idx + 1 < len(same) else None
-    desc = "%s(%s)。A4で無料印刷できる、幼児向けのシートです。" % (s["title"], s["desc"])
+    use = TAB_USE.get(s["tab"], "")
+    desc = "%s。%s。%sA4で無料印刷できる、幼児向けのシートです。" % (s["title"], s["desc"].rstrip("。"), use + "。" if use else "")
     path = "%s/%s.html" % (s["tab"], s["id"])
     out = head(s["title"], desc, rel, path, ("img/%s.png" % s["id"]) if thumb_exists(s["id"]) else None)
     out += header(rel, s["tab"])

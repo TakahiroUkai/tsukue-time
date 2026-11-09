@@ -337,6 +337,12 @@ def build_sheet(s, i):
         out += ('<div class="box noprint"><label for="nameIn"><b>お子さんの名前(ひらがな)</b></label><br>'
                 '<input id="nameIn" type="text" maxlength="12" placeholder="ひらがなで入力" autocomplete="off" style="font:inherit;font-size:18px;padding:6px 12px;border:1px solid var(--line);border-radius:8px;max-width:100%">'
                 '<p class="hint">入力した名前は、この端末のブラウザの中だけで使われ、サイトには送られません。6文字まで。</p></div>')
+    elif "data-cal-month" in frag:
+        dy = int(re.search(r'data-cal-year="(\d+)"', frag).group(1))
+        out += ('<div class="box noprint"><label for="calYear"><b>年</b></label> '
+                '<select id="calYear" style="font:inherit;font-size:18px;padding:6px 12px;border:1px solid var(--line);border-radius:8px">%s</select>'
+                '<p class="hint">年を選ぶと、その年の曜日に切り替わります。シートの枠に名前を入力してから印刷します。選んだ年と名前は、この端末のブラウザの中にだけ保存され、サイトには送られません。</p></div>'
+                % "".join('<option value="%d"%s>%d年</option>' % (y, " selected" if y == dy else "", y) for y in range(dy - 1, dy + 10)))
     elif "<input" in frag:
         out += '<p class="hint noprint">シートの中の入力欄に書き込めます。入力した内容は、この端末のブラウザの中にだけ保存されます。</p>'
     out += '<div class="sheet-wrap"><div class="sheet" data-sheet="%s">%s</div></div>' % (esc(s["id"]), frag.rstrip())

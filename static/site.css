@@ -78,6 +78,7 @@ nav.tabs a.rs-link{font-weight:700;color:var(--accent)}
   main,.wrap,.sheet-wrap{padding:0!important;margin:0!important;max-width:none!important}
   .sheet{width:210mm!important;height:296mm!important;aspect-ratio:auto!important;box-shadow:none!important;outline:none!important;break-inside:avoid}
   .in::placeholder{color:transparent}
+  .in:focus{background:transparent!important}
   *{-webkit-print-color-adjust:exact;print-color-adjust:exact}
 }
 .article h3{font-size:17px;line-height:1.5;margin:20px 0 6px}

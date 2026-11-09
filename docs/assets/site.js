@@ -42,6 +42,35 @@
     }
     bindInputs(sheet);
   }
+
+  /* 月ごとのカレンダー: 年を選ぶと、その年の曜日に合わせて日付を作り直す(日曜はじまり)。tools/make_calendar.py と同じ決まり */
+  var cal = document.querySelector('.sheet .cal[data-cal-month]');
+  if (cal) {
+    var calMonth = +cal.getAttribute('data-cal-month');
+    var calSel = document.getElementById('calYear');
+    var WD = ['にち', 'げつ', 'か', 'すい', 'もく', 'きん', 'ど'];
+    var renderCal = function (y) {
+      var first = new Date(y, calMonth - 1, 1).getDay();
+      var days = new Date(y, calMonth, 0).getDate();
+      var rows = Math.ceil((first + days) / 7);
+      var html = WD.map(function (w) { return '<div class="cw">' + w + '</div>'; }).join('');
+      for (var i = 0; i < rows * 7; i++) {
+        var d = i - first + 1;
+        html += (d >= 1 && d <= days) ? '<div class="cd"><b>' + d + '</b></div>' : '<div class="cd"></div>';
+      }
+      Array.prototype.forEach.call(cal.querySelectorAll('.cg'), function (g) { g.innerHTML = html; });
+      cal.style.setProperty('--c', Math.min(86 / 7, 42 / rows).toFixed(3));
+      var t = document.querySelector('.sheet [data-cal-title]');
+      if (t) t.textContent = y + '年 ' + calMonth + '月';
+    };
+    if (calSel) {
+      var y0 = +ls.get('calyear', +cal.getAttribute('data-cal-year'));
+      if (!Array.prototype.some.call(calSel.options, function (o) { return +o.value === y0; })) y0 = +cal.getAttribute('data-cal-year');
+      calSel.value = String(y0);
+      renderCal(y0);
+      calSel.addEventListener('change', function () { ls.set('calyear', +calSel.value); renderCal(+calSel.value); });
+    }
+  }
   Array.prototype.forEach.call(document.querySelectorAll('[data-share]'), function (box) {
     var url = box.getAttribute('data-url'), title = box.getAttribute('data-title');
     var ok = box.querySelector('.share-ok');

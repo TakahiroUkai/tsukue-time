@@ -100,5 +100,9 @@ nav.tabs a.rs-link{font-weight:700;color:var(--accent)}
 @media (max-width:600px){
   nav.tabs{flex-wrap:nowrap;overflow-x:auto;width:100%;-webkit-overflow-scrolling:touch;scrollbar-width:thin}
   nav.tabs a{white-space:nowrap;flex:0 0 auto}
+  .tabcards{grid-template-columns:repeat(2,1fr);gap:10px}
+  .tabcards .card .b{padding:10px 12px 12px}
+  .tabcards .card .t{font-size:15px;line-height:1.4}
+  .tabcards .card .d{font-size:12px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 }
 @media print{.othertabs{display:none!important}}

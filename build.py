@@ -29,6 +29,10 @@ TAB = {t["id"]: t for t in TABS}
 SITE = CFG["url"]
 TODAY_FALLBACK = "2026-11-01"
 # トップの「いまの季節のシート」に出すシートのid(季節が変わったら入れ替える)
+# トップの上部に見せるシート(種類がばらけるように)と、種類カードの代表の絵
+HERO_IDS = ["s-xmas-bear", "h25-1", "d-rocket", "seal-rainbow", "cal-11", "abc1"]
+TAB_REP = {"cards": "c-animals", "kana": "h25-1", "abc": "abc1", "art": "a-car", "seal": "seal-rainbow",
+           "daily": "hira-challenge", "trace": "d-star", "plan": "week"}
 SEASON_TITLE = "いまの季節のシート(クリスマス・お正月)"
 SEASON_IDS = ["s-xmas", "s-christmas-wreath", "s-xmas-stocking", "seal-xmas", "d-tree",
               "s-newyear", "s-newyear-sheep", "t-mochi"]
@@ -266,27 +270,42 @@ def build_tisensei():
 def build_index():
     rel = ""
     counts = {t["id"]: sum(1 for s in SHEETS if s["tab"] == t["id"]) for t in TABS}
+    def tabimg(t):
+        sid = TAB_REP.get(t["id"])
+        if sid and thumb_exists(sid):
+            return '<img src="img/%s.png" alt="%sの見本" width="210" height="160" loading="lazy">' % (sid, esc(t["label"]))
+        return ""
     tabcards = "".join(
-        '<li class="card"><a href="%s/"><div class="b"><div class="t">%s(%d枚)</div><div class="d">%s</div></div></a></li>'
-        % (t["id"], esc(t["label"]), counts[t["id"]], esc(t["intro"]))
+        '<li class="card"><a href="%s/">%s<div class="b"><div class="t">%s(%d枚)</div><div class="d">%s</div></div></a></li>'
+        % (t["id"], tabimg(t), esc(t["label"]), counts[t["id"]], esc(t["intro"]))
         for t in TABS
     )
     newest = sorted(SHEETS, key=lambda s: s["added"], reverse=True)
     latest_date = newest[0]["added"]
-    latest = [s for s in SHEETS if s["added"] == latest_date]
-    if len(latest) == len(SHEETS):
+    if sum(1 for s in SHEETS if s["added"] == latest_date) == len(SHEETS):
         latest = SHEETS[:8]
         latest_title = "人気のシート"
     else:
+        # 新しい順に、種類ごとに1枚まで(似たシートが並ばないように)
+        latest, seen_tabs = [], set()
+        for s in newest:
+            if s["tab"] not in seen_tabs:
+                seen_tabs.add(s["tab"]); latest.append(s)
         latest = latest[:8]
         latest_title = "新しいシート"
     desc = "A4で印刷できる、幼児向けの無料シート集です。ぬりえ、なぞり書き、ひらがな表、点つなぎなど%d種類。子育ての研究を紹介するコーナーもあります。" % len(SHEETS)
     out = head(CFG["name"], desc, rel, "", "img/%s.png" % latest[0]["id"] if thumb_exists(latest[0]["id"]) else None)
     out += header(rel, None)
-    out += ('<section class="hero"><div class="wrap"><h1>%s</h1><p class="lead">%s。ぬりえ、なぞり書き、ひらがな表、点つなぎなど、全%d種類。印刷ボタンを押すだけでA4で1枚ずつ印刷できます。</p></div></section>'
-            % (esc(CFG["name"]), esc(CFG["subtitle"]), len(SHEETS)))
+    strip = "".join(
+        '<li><a href="%s/%s.html"><img src="img/%s.png" alt="%sの見本" width="210" height="297"><span>%s</span></a></li>'
+        % (SHEET_BY_ID[i]["tab"], i, i, esc(SHEET_BY_ID[i]["title"]), esc(SHEET_BY_ID[i]["title"]))
+        for i in HERO_IDS if i in SHEET_BY_ID and thumb_exists(i))
+    quick = "".join('<a href="%s/">%s</a>' % (tid, esc(TAB[tid]["label"])) for tid in ("art", "kana", "trace"))
+    out += ('<section class="hero"><div class="wrap"><h1>%s</h1><p class="lead">%s。気になるシートを選んで、そのままA4で印刷できます。</p>'
+            '<ul class="strip">%s</ul><p class="quick">%s<a href="#kinds">ほかの種類も見る</a></p></div></section>'
+            % (esc(CFG["name"]), esc(CFG["subtitle"]), strip, quick))
     out += '<main><div class="wrap">'
-    out += '<h2>シートの種類</h2><ul class="grid tabcards">%s</ul>' % tabcards
+    out += '<h2 id="kinds">シートの種類</h2><ul class="grid tabcards">%s</ul>' % tabcards
     out += '<h2>%s</h2><ul class="grid">%s</ul>' % (latest_title, "".join(card(s, rel) for s in latest))
     shown = {s["id"] for s in latest}
     season = [SHEET_BY_ID[i] for i in SEASON_IDS if i in SHEET_BY_ID and i not in shown][:6]

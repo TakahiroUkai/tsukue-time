@@ -129,7 +129,7 @@ svg.seal-svg text{font-family:var(--f-ui);font-size:1.9px;fill:#b3b3b3;stroke:no
 /* 月ごとのカレンダー(2人ぶん)。マスの一辺 --c(cqw)は、行数に合わせて site.js が決める */
 .cal{flex:1;min-height:0;display:flex;flex-direction:column}
 .cb{flex:1;min-height:0;display:flex;flex-direction:column;align-items:center}
-.cb+.cb{border-top:.25cqw dashed #999;padding-top:2cqw}
+.cb+.cb{padding-top:2cqw}
 .cbw{width:calc(var(--c)*7cqw)}
 .ch{display:flex;justify-content:space-between;align-items:flex-end;height:10cqw;margin-bottom:1cqw}
 .ch svg{width:30cqw;height:10cqw;display:block}

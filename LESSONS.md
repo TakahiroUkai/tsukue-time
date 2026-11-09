@@ -72,6 +72,7 @@
 | 親子の感情の乱れの瞬間評価(Berkowitz ら, PLOS ONE, 2025, pone.0327179) | 観察研究で、解析は89人(登録635人から)。アプリ設計のための項目選びが主目的で、家庭での活かし方に落とし込みにくい |
 | 親の感情表現と子どもの語りの系統的レビュー(Frontiers in Psychology, 2025, fpsyg.2025.1629744) | 対象年齢の定義がなく、本文の主要6件の一部が幼児でない。限界の節がなく、表と本文で国・年が食い違い、結論が因果に言い過ぎ |
 | 学校での負傷予防の集団無作為化試験(Frontiers in Public Health, 2026, fpubh.2026.1733074) | 対象が6〜17歳で幼児ではない。主要結果の信頼区間が推定値を含まない |
+| 幼児の画面時間・座位・身体活動と睡眠のメタ分析(Janssen ら, Sleep Med Rev, 2020, 101226) | 観察研究が中心(31件中23件が横断研究)で、証拠の質は多くが「とても低い」。幼児の画面時間と睡眠時間のメタ分析は有意でない。本文の説明と表の件数が複数食い違う(身体活動・屋外遊び)。親の不安をあおりやすい題材 |
 
 ## 実行ログ
 
@@ -87,3 +88,4 @@
 - 2026-11-07: 追加なし(見送り)。検索語は preschool RCT sleep/nap/physical activity、toddler vegetable responsive feeding、screen time language meta-analysis、outdoor/free play executive function、Sci Rep/BMC/PLOS 2-5 years。全文を最後まで読めたのは Chen 2025 の1件のみで基準外。PMC(2件)・Wiley・Frontiers in Sleep は読めず。Frontiersの心理学は offset 0・39000・78000 で最後まで読めた。この実行でも add_repo / claude-artifacts のツールは見つからず、非公開Artifactは更新していない。次回は、検索結果に出た時点で題名・年齢・デザインを見て、幼児が対象のRCT/メタ分析に絞ってから本文を取る。
 - 2026-11-07(2回目): 追加なし(見送り)。検索語は PLOS ONE RCT toddlers 2-5 years、preschool meta-analysis sleep/picky eating/physical activity。候補は上の3件で、PMC・BMCは読めず、PLOSの1件は観察研究で小規模。PLOS ONE(pone.0338422)は RATE_LIMIT_EXCEEDED(未確認)。web-fetchは並列にせず、1件ずつ取るとPLOSは読めた。この実行でも add_repo / claude-artifacts のツールは見つからず、Artifactは更新していない。次回は、PLOS・Frontiersの全文ページで、幼児対象のRCT/メタ分析を先に3件並べてから取る。
 - 2026-11-08: 追加あり(Journal of Child Language 2026, Coffey & Snedeker。保護者の話しかけとことばの関連のメタ分析)。検索語は preschool RCT emotion regulation、caregiver speech language meta-analysis など。候補3件のうち上の2件は見送り。web-fetch を1件ずつ、本文の後半は offset を指定して取り直すと、限界と結論まで逐語で読めた。この実行でも add_repo / claude-artifacts のツールは見つからなかったが、Artifactツールで更新できた(index.html は保存済みの版から外側の枠を除いて再公開し、files で research.html・share.html だけ差し替え。公開ページの取得は PROVENANCE_REQUIRED で確かめられなかった)。
+- 2026-11-09: 追加なし(見送り)。検索語は preschool RCT sleep/play/feeding、meta-analysis sleep/screen/physical activity、picky eating、cluster RCT preschool emotion/language、shared book/pretend play meta-analysis。全文を読めたのは Janssen 2020(UCLの機関リポジトリのPDF)の1件で基準外。このPDFは offset 0 のあと offset 39000 で取り直すと最後まで逐語で読めた。ほかの候補(学校単位の情動教育試験、ごっこ遊びのメタ分析、共有読書のメタ分析)は、家庭に落とし込みにくい、既存の記事と分野が近い、全文が未取得のため選ばず(未確認)。この実行では claude-artifacts のツールは見つからず、Artifactも更新していない。次回は、画面時間・睡眠の観察研究を避け、食事・遊び・園生活の無作為化試験を探す。

@@ -25,6 +25,26 @@
       '<div class="nmline"><span>なまえ</span><i>' + esc(name) + '</i></div>' + inner + '</div>';
   }
 
+
+  /* ローマ字の名前入りなぞりがき(abc-name)。英字だけを使い、8文字まで */
+  function abcNameSheet(name) {
+    var chars = Array.from(name.replace(/[^A-Za-z]/g, '')).slice(0, 8);
+    var inner;
+    if (!chars.length) {
+      inner = '<p class="empty">お名前をローマ字で入力すると、ここになぞり書きの練習が作られます。</p>';
+    } else {
+      var blank = '<div class="tb"></div>';
+      var rows = chars.map(function (c) {
+        return '<div class="trow t8"><div class="tb model">' + c + '</div><div class="tb">' + c + '</div><div class="tb">' + c + '</div><div class="tb">' + c + '</div>' + new Array(5).join(blank) + '</div>';
+      }).join('');
+      var full = '<div class="trow t8 full">' + chars.map(function (c) { return '<div class="tb">' + c + '</div>'; }).join('') +
+        new Array(8 - chars.length + 1).join(blank) + '</div>';
+      inner = '<div class="trows">' + rows + full + '</div>';
+    }
+    return '<div class="sh abc"><h2>なまえ アルファベット<small>うすい もじを なぞろう</small></h2>' +
+      '<div class="nmline"><span>なまえ</span><i>' + esc(chars.join('')) + '</i></div>' + inner + '</div>';
+  }
+
   function bindInputs(scope) {
     Array.prototype.forEach.call(scope.querySelectorAll('input[data-k]'), function (el) {
       el.value = ls.get('f:' + el.getAttribute('data-k'), el.getAttribute('data-d') || '');
@@ -36,9 +56,11 @@
   if (sheet) {
     var nin = document.getElementById('nameIn');
     if (nin) {
-      nin.value = ls.get('name', '');
-      sheet.innerHTML = nameSheet(nin.value);
-      nin.addEventListener('input', function () { ls.set('name', nin.value); sheet.innerHTML = nameSheet(nin.value); });
+      var isAbc = sheet.getAttribute('data-sheet') === 'abc-name';
+      var mk = isAbc ? abcNameSheet : nameSheet, key = isAbc ? 'abcname' : 'name';
+      nin.value = ls.get(key, '');
+      sheet.innerHTML = mk(nin.value);
+      nin.addEventListener('input', function () { ls.set(key, nin.value); sheet.innerHTML = mk(nin.value); });
     }
     bindInputs(sheet);
   }

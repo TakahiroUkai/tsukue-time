@@ -369,6 +369,10 @@ def build_sheet(s, i):
         out += ('<div class="box noprint"><label for="nameIn"><b>お子さんの名前(ひらがな)</b></label><br>'
                 '<input id="nameIn" type="text" maxlength="12" placeholder="ひらがなで入力" autocomplete="off" style="font:inherit;font-size:18px;padding:6px 12px;border:1px solid var(--line);border-radius:8px;max-width:100%">'
                 '<p class="hint">入力した名前は、この端末のブラウザの中だけで使われ、サイトには送られません。6文字まで。</p></div>')
+    elif s["id"] == "abc-name":
+        out += ('<div class="box noprint"><label for="nameIn"><b>お子さんの名前(ローマ字・英字)</b></label><br>'
+                '<input id="nameIn" type="text" maxlength="8" placeholder="例: Haruto" autocomplete="off" autocapitalize="words" style="font:inherit;font-size:18px;padding:6px 12px;border:1px solid var(--line);border-radius:8px;max-width:100%">'
+                '<p class="hint">入力した名前は、この端末のブラウザの中だけで使われ、サイトには送られません。英字8文字まで。大文字・小文字は入力したとおりに作られます。</p></div>')
     elif "data-cal-month" in frag:
         dy = int(re.search(r'data-cal-year="(\d+)"', frag).group(1))
         out += ('<div class="box noprint"><label for="calYear"><b>年</b></label> '

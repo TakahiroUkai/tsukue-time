@@ -138,3 +138,19 @@ svg.seal-svg text{font-family:var(--f-ui);font-size:1.9px;fill:#b3b3b3;stroke:no
 .cg>div{box-sizing:border-box;border-right:.3cqw solid #111;border-bottom:.3cqw solid #111}
 .cg .cw{display:flex;align-items:center;justify-content:center;font-size:2.7cqw;font-weight:700}
 .cg .cd b{display:block;text-align:right;font-weight:400;font-size:2.9cqw;line-height:1.2;padding:.5cqw .9cqw 0}
+
+/* アルファベットのあそびシート(tools/make_abc_sheets.py) */
+.abc .lab{margin:1cqw 0 0;font-size:2.8cqw;color:#555}
+.ms{display:grid;grid-template-columns:repeat(7,1fr);gap:1.2cqw;width:78cqw;margin:0 auto}
+.mc{aspect-ratio:1;border:.35cqw solid #444;display:grid;place-items:center;font-family:var(--f-abc);font-weight:700;line-height:1;position:relative}
+.ms .mc{font-size:6.4cqw}
+.mc.q{border:.5cqw dashed #111}
+.mz{display:grid;grid-template-columns:repeat(6,12.4cqw);grid-auto-rows:12.4cqw;margin:0 auto;border-top:.35cqw solid #444;border-left:.35cqw solid #444}
+.mz .mc{border:0;border-right:.35cqw solid #444;border-bottom:.35cqw solid #444;font-size:6.6cqw}
+.mz .mc small{position:absolute;left:0;right:0;bottom:.6cqw;font-family:var(--f-ui);font-size:1.9cqw;font-weight:700;text-align:center;color:#111}
+.mz .mc.go{background:#efefef}
+.bc{margin-top:1.5cqw}
+.bg{display:grid;grid-template-columns:repeat(3,12cqw);grid-auto-rows:12cqw;margin:1.5cqw auto 0;width:max-content;border-top:.45cqw solid #111;border-left:.45cqw solid #111}
+.bg .mc{border:0;border-right:.45cqw solid #111;border-bottom:.45cqw solid #111;font-size:7cqw}
+.cs{display:grid;grid-template-columns:repeat(13,1fr);border-top:.25cqw dashed #777;border-left:.25cqw dashed #777;margin-top:1cqw}
+.cs div{aspect-ratio:1;display:grid;place-items:center;font-family:var(--f-abc);font-weight:700;font-size:3.6cqw;border-right:.25cqw dashed #777;border-bottom:.25cqw dashed #777}

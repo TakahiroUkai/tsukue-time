@@ -56,8 +56,8 @@ def amazon_url(isbn13):
     return "https://www.amazon.co.jp/dp/%s?tag=%s" % (isbn13_to_10(isbn13), CFG["affiliate"]["amazon_tag"])
 
 
-def head(title, desc, rel, path, img=None):
-    full_title = title if title == CFG["name"] else "%s | %s" % (title, CFG["name"])
+def head(title, desc, rel, path, img=None, full=None):
+    full_title = full or (title if title == CFG["name"] else "%s | %s" % (title, CFG["name"]))
     url = SITE + path
     og = ""
     if img:
@@ -293,8 +293,9 @@ def build_index():
                 seen_tabs.add(s["tab"]); latest.append(s)
         latest = latest[:8]
         latest_title = "新しいシート"
-    desc = "A4で印刷できる、幼児向けの無料シート集です。ぬりえ、なぞり書き、ひらがな表、点つなぎなど%d種類。子育ての研究を紹介するコーナーもあります。" % len(SHEETS)
-    out = head(CFG["name"], desc, rel, "", "img/%s.png" % latest[0]["id"] if thumb_exists(latest[0]["id"]) else None)
+    desc = "A4で印刷できる、幼児向けの無料シート集です。ぬりえ、なぞり書き、ひらがな表、点つなぎなど%d枚。クリスマスやお正月のぬりえ・シールアートも。子育ての研究を紹介するコーナーもあります。" % len(SHEETS)
+    out = head(CFG["name"], desc, rel, "", "img/%s.png" % latest[0]["id"] if thumb_exists(latest[0]["id"]) else None,
+               full="机タイム素材集|幼児向けの無料ぬりえ・なぞり書きプリント")
     out += header(rel, None)
     strip = "".join(
         '<li><a href="%s/%s.html"><img src="img/%s.png" alt="%sの見本" width="210" height="297"><span>%s</span></a></li>'

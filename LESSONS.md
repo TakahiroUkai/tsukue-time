@@ -76,6 +76,9 @@
 | 乳幼児の自閉症の可能性が高い子への親媒介の早期介入の系統的レビュー(Frontiers in Psychiatry, 2026, fpsyt.2026.1676968) | 対象が6〜22か月で自閉症の可能性が高い子に限られ、幼児一般ではない。件数・人数・年齢が本文と表で複数食い違い、信頼区間もp値も無い |
 | 幼児の睡眠の研究(Frontiers in Sleep, frsle.2025.1662221) | 権限(PROVENANCE_REQUIRED)で読めなかった。未確認 |
 | 親へのショートメッセージで家庭の学びを支える英国の無作為化試験(PMC12680085) | PMCが権限(PROVENANCE_REQUIRED)で読めなかった。未確認 |
+| 就学前の屋外あそびと小学校までの心の健康の追跡(JCPP, 2026, Dodd ら。Growing Up in Scotland) | 論文本体のURLを取れず(大学の機関リポジトリのPDFは client_error)、報道記事しか読めない。観察研究で、数字・限界を確かめられない |
+| 親向けデジタル子育て支援のクラスタ無作為化試験(ペルー、Science Advances) | 機関リポジトリのPDFが [binary data] で返り、本文を読めなかった。未確認 |
+| 親の話しかけ(応答性)と幼児の心の問題(Feng ら, Frontiers in Psychology, 2026, fpsyg.2026.1688294) | 横断研究で、親の回答のみ。説明できる分散が1%未満。表1の年齢の平均とp値が合わないなど、本文・要旨・表の食い違いが複数。要旨が効果の違いを言い過ぎ |
 
 ## 実行ログ
 
@@ -93,3 +96,4 @@
 - 2026-11-08: 追加あり(Journal of Child Language 2026, Coffey & Snedeker。保護者の話しかけとことばの関連のメタ分析)。検索語は preschool RCT emotion regulation、caregiver speech language meta-analysis など。候補3件のうち上の2件は見送り。web-fetch を1件ずつ、本文の後半は offset を指定して取り直すと、限界と結論まで逐語で読めた。この実行でも add_repo / claude-artifacts のツールは見つからなかったが、Artifactツールで更新できた(index.html は保存済みの版から外側の枠を除いて再公開し、files で research.html・share.html だけ差し替え。公開ページの取得は PROVENANCE_REQUIRED で確かめられなかった)。
 - 2026-11-09: 追加なし(見送り)。検索語は preschool RCT sleep/play/feeding、meta-analysis sleep/screen/physical activity、picky eating、cluster RCT preschool emotion/language、shared book/pretend play meta-analysis。全文を読めたのは Janssen 2020(UCLの機関リポジトリのPDF)の1件で基準外。このPDFは offset 0 のあと offset 39000 で取り直すと最後まで逐語で読めた。ほかの候補(学校単位の情動教育試験、ごっこ遊びのメタ分析、共有読書のメタ分析)は、家庭に落とし込みにくい、既存の記事と分野が近い、全文が未取得のため選ばず(未確認)。この実行では claude-artifacts のツールは見つからず、Artifactも更新していない。次回は、画面時間・睡眠の観察研究を避け、食事・遊び・園生活の無作為化試験を探す。
 - 2026-11-10: 追加なし(見送り)。検索語は preschool RCT parents Frontiers/PLOS、responsive feeding meta-analysis、preschool sleep RCT、systematic review reading/play/bedtime。全文を読めたのは Frontiers in Psychiatry のレビュー1件のみで基準外。Frontiers(Sleep)とPMCは PROVENANCE_REQUIRED で読めず(未確認)。この実行では web-fetch エージェントが、許可の確認に答えがない URL を再試行できず、同じ失敗が続いた。claude-artifacts のツールは見つからず、Artifactは更新していない。次回は、PLOS・Nature など別の出版社の全文から、幼児一般が対象のRCT/メタ分析を探す。
+- 2026-11-11: 追加なし(見送り)。検索語は Scientific Reports/PLOS ONE/Frontiers の preschool RCT、outdoor play cohort、digital parenting Peru。上の3件を確認したが、2件は本文を読めず(機関リポジトリのPDFは client_error と [binary data])、Frontiersの1件は本文・表の食い違いと横断研究で基準外。機関リポジトリのPDFは取れないことが多い(2回確認)ので、出版社の全文HTML(Frontiers・PLOS)を先に探す。この実行では claude-artifacts と add_repo のツールは見つからず、Artifactは更新していない(追加が無いため)。

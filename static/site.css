@@ -116,3 +116,13 @@ nav.tabs a.rs-link{font-weight:700;color:var(--accent)}
   .tabcards .card .d{font-size:12px;line-height:1.5;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden}
 }
 @media print{.othertabs{display:none!important}}
+
+/* クリスマスツリーメーカー */
+.tm-ctl fieldset{border:0;margin:0 0 10px;padding:0}
+.tm-ctl legend{font-weight:700;font-size:15px;padding:0;margin-bottom:4px}
+.tm-o{display:inline-flex;align-items:center;gap:6px;min-height:44px;padding:4px 14px 4px 8px;margin:0 6px 6px 0;border:1px solid var(--line);border-radius:10px;background:#fff;cursor:pointer;font-size:15px}
+.tm-o input{width:20px;height:20px;margin:0}
+.tm-o:has(input:checked){border-color:var(--accent);background:#eef8f6;font-weight:700}
+.tm-in{font:inherit;font-size:18px;padding:6px 12px;border:1px solid var(--line);border-radius:8px;max-width:100%}
+.tm-sheet>.tm-svg{display:block;width:100%;height:100%}
+.tm-svg .tm-t{font-family:var(--f-hand)}

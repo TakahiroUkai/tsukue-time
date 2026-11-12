@@ -341,6 +341,9 @@ def build_tab(t):
     out = head(t["label"], desc, rel, t["id"] + "/", ("img/%s.png" % items[0]["id"]) if thumb_exists(items[0]["id"]) else None)
     out += header(rel, t["id"])
     out += '<main><div class="wrap"><p class="crumb"><a href="../">ホーム</a> &gt; %s</p><h1>%s</h1><p class="lead">%s</p>' % (esc(t["label"]), esc(t["label"]), esc(t["intro"]))
+    if t["id"] == "art":
+        out += ('<div class="box ok"><b><a href="xmas-tree-maker.html">クリスマスツリーメーカー</a></b><br>'
+                'かたち・かざり・名前をえらんで、ぬりえやシール台紙を作れます。「もう1枚」でかざりの場所が変わります。</div>')
     out += '<ul class="grid">%s</ul>' % "".join(card(s, rel) for s in items)
     out += '<h2>使い方</h2><div class="box"><ol>%s</ol></div>' % "".join("<li>%s</li>" % esc(h) for h in t["howto"])
     out += books_html(t["id"])
@@ -405,6 +408,52 @@ def build_sheet(s, i):
     write(path, out)
 
 
+def _radios(name, items):
+    return "".join('<label class="tm-o"><input type="radio" name="%s" value="%s"><span>%s</span></label>' % (name, v, esc(l)) for v, l in items)
+
+
+def build_tree_maker():
+    """クリスマスツリーメーカー(専用ページ)。絵は static/tree.js がブラウザの中で作る。"""
+    rel = "../"
+    path = "art/xmas-tree-maker.html"
+    title = "クリスマスツリーメーカー(ぬりえ・シール台紙)"
+    desc = "かたち・かざり・名前をえらぶと、世界にひとつのクリスマスツリーのぬりえとシール台紙がA4で印刷できます。「もう1枚」でかざりの場所が変わります。無料・登録なし。"
+    out = head(title, desc, rel, path)
+    out += header(rel, "art")
+    out += ('<main><div class="wrap"><p class="crumb"><a href="../">ホーム</a> &gt; <a href="./">%s</a> &gt; クリスマスツリーメーカー</p>'
+            '<h1>%s</h1><p class="lead">ツリーのかたちとかざりをえらんで、ぬりえやシール台紙を作れます。「もう1枚」を押すたびに、かざりの場所が変わります。</p>' % (esc(TAB["art"]["label"]), esc(title)))
+    out += ('<div class="box noprint tm-ctl" id="tmCtl">'
+            '<fieldset><legend>1. ツリーのかたち</legend>%s</fieldset>'
+            '<fieldset><legend>2. かざりの数としゅるい(シール台紙は丸だけ)</legend>%s%s<label class="tm-o"><input type="checkbox" name="gifts"><span>プレゼントも描く</span></label></fieldset>'
+            '<fieldset><legend>3. 作るもの</legend>%s</fieldset>'
+            '<fieldset><legend>線と かざりの大きさ</legend>%s</fieldset>'
+            '<fieldset><legend>4. 名前(8文字まで・なくても大丈夫です)</legend>'
+            '<input type="text" name="tname" maxlength="8" placeholder="例: はると" autocomplete="off" class="tm-in">'
+            '<p class="hint">入力した名前は、この端末のブラウザの中だけで使われ、サイトには送られません。</p></fieldset>'
+            '</div>'
+            % (_radios("shape", [("tri", "さんかく"), ("round", "まるい"), ("slim", "ほそながい")]),
+               _radios("count", [("6", "すこし"), ("10", "ふつう"), ("16", "たくさん")]),
+               _radios("kinds", [("all", "ぜんぶ"), ("ball", "ボールだけ"), ("star", "ほしだけ")]),
+               _radios("mode", [("color", "ぬりえ"), ("seal", "シール台紙(丸シールを貼る)")]),
+               _radios("level", [("easy", "大きく・太い線"), ("normal", "ふつう"), ("fine", "こまかく・細い線")])))
+    out += ('<div class="actions noprint"><button type="button" class="btn" data-print>5. A4で印刷する</button>'
+            '<button type="button" class="btn ghost" id="tmAgain">もう1枚(かざりの場所を変える)</button>'
+            '<span class="hint">印刷画面で、倍率は100%にします。</span></div>')
+    out += share_html(path, title + " | " + CFG["name"])
+    out += ('<div class="sheet-wrap"><div class="sheet tm-sheet" id="tmSheet" data-sheet="xmas-tree-maker">'
+            '<p class="empty">JavaScriptをオンにすると、ここにツリーが表示されます。</p></div></div>')
+    out += ('<h2>使い方</h2><div class="box"><ol><li>ツリーのかたちとかざりをえらびます。絵はすぐ下のプレビューに出ます。</li>'
+            '<li>「ぬりえ」はクレヨンで、「シール台紙」は点線の丸にシールを貼って使います。丸の中の色の名前は、貼るシールの目安です。</li>'
+            '<li>気に入らなければ「もう1枚」で、かざりの場所を変えます。</li>'
+            '<li>A4で印刷します。印刷画面で、倍率は100%にします。</li></ol></div>')
+    out += books_html("art")
+    out += other_tabs(rel, "art")
+    out += '<p><a href="./">&larr; %s の一覧にもどる</a></p>' % esc(TAB["art"]["label"])
+    out += '</div></main>' + footer(rel).replace('<script src="%sassets/site.js" defer></script>' % rel,
+                                                '<script src="%sassets/site.js" defer></script>\n<script src="%sassets/tree.js" defer></script>' % (rel, rel))
+    write(path, out)
+
+
 def build_static_pages():
     rel = ""
     about = head("このサイトについて", "机タイム素材集は、印刷して使える幼児向けの無料シートと、子育ての研究紹介を公開しているサイトです。", rel, "about.html")
@@ -431,11 +480,11 @@ def build_static_pages():
 
 def build_assets():
     (DOCS / "assets").mkdir(parents=True, exist_ok=True)
-    for f in ("site.css", "sheet.css", "site.js"):
+    for f in ("site.css", "sheet.css", "site.js", "tree.js"):
         shutil.copyfile(ROOT / "static" / f, DOCS / "assets" / f)
     (DOCS / ".nojekyll").write_text("", encoding="utf8")
     (DOCS / "robots.txt").write_text("User-agent: *\nAllow: /\nSitemap: %ssitemap.xml\n" % SITE, encoding="utf8")
-    urls = [SITE, SITE + "about.html", SITE + "privacy.html"] + [SITE + t["id"] + "/" for t in TABS] + [SITE + "research/", SITE + "ti-sensei/"] + \
+    urls = [SITE, SITE + "about.html", SITE + "privacy.html"] + [SITE + t["id"] + "/" for t in TABS] + [SITE + "research/", SITE + "ti-sensei/", SITE + "art/xmas-tree-maker.html"] + \
            ["%sresearch/%s.html" % (SITE, r["id"]) for r in RESEARCH] + \
            ["%s%s/%s.html" % (SITE, s["tab"], s["id"]) for s in SHEETS]
     sm = '<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n%s</urlset>\n' % "".join(
@@ -515,6 +564,7 @@ def main():
     build_tisensei()
     for r in RESEARCH:
         build_research(r)
+    build_tree_maker()
     build_static_pages()
     print("docs/ を生成しました: シート%d枚・研究%d件" % (len(SHEETS), len(RESEARCH)))
 

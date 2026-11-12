@@ -436,7 +436,7 @@ def build_tree_maker():
                _radios("kinds", [("all", "ぜんぶ"), ("ball", "ボールだけ"), ("star", "ほしだけ")]),
                _radios("mode", [("color", "ぬりえ"), ("seal", "シール台紙(丸シールを貼る)")]),
                _radios("level", [("easy", "大きく・太い線"), ("normal", "ふつう"), ("fine", "こまかく・細い線")])))
-    out += ('<div class="actions noprint"><button type="button" class="btn" data-print>5. A4で印刷する</button>'
+    out += ('<div class="actions noprint"><a class="hint" href="#tmSheet">↓ プレビューへ</a><button type="button" class="btn" data-print>5. A4で印刷する</button>'
             '<button type="button" class="btn ghost" id="tmAgain">もう1枚(かざりの場所を変える)</button>'
             '<span class="hint">印刷画面で、倍率は100%にします。</span></div>')
     out += share_html(path, title + " | " + CFG["name"])

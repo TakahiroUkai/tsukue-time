@@ -79,6 +79,11 @@
 | 就学前の屋外あそびと小学校までの心の健康の追跡(JCPP, 2026, Dodd ら。Growing Up in Scotland) | 論文本体のURLを取れず(大学の機関リポジトリのPDFは client_error)、報道記事しか読めない。観察研究で、数字・限界を確かめられない |
 | 親向けデジタル子育て支援のクラスタ無作為化試験(ペルー、Science Advances) | 機関リポジトリのPDFが [binary data] で返り、本文を読めなかった。未確認 |
 | 親の話しかけ(応答性)と幼児の心の問題(Feng ら, Frontiers in Psychology, 2026, fpsyg.2026.1688294) | 横断研究で、親の回答のみ。説明できる分散が1%未満。表1の年齢の平均とp値が合わないなど、本文・要旨・表の食い違いが複数。要旨が効果の違いを言い過ぎ |
+| 短く回数を増やした屋外あそびと幼児の身体活動の集団無作為化試験(Driediger ら, IJERPH, 2019, ijerph16214126) | 主要・副次のすべてで群の差なし。要旨と表のp値、脱落率(要旨9%/30%に対し計算上は約25%/36%)、年齢範囲が食い違う |
+| 親のストレスと就学前児の社会情緒の力(Yu ら, Frontiers in Psychology, 2025, fpsyg.2025.1679084) | 横断の親回答のみで、本文は「証明した」と因果に言い過ぎ。尺度の範囲(1〜5/1〜7)や表の注記の食い違い。限界の節を本文で読めなかった。親の不安をあおりやすい |
+| 就学前の日課と社会情緒(PMC12276931) | PMCの確認画面で読めなかった |
+| Frontiers in Psychology 2026, fpsyg.2026.1644623 | PROVENANCE_REQUIREDで読めなかった。未確認 |
+| WHO 5歳未満の身体活動・座位・睡眠のガイドライン(2019) | who.int が PROVENANCE_REQUIRED で読めなかった。未確認 |
 
 ## 実行ログ
 
@@ -97,3 +102,4 @@
 - 2026-11-09: 追加なし(見送り)。検索語は preschool RCT sleep/play/feeding、meta-analysis sleep/screen/physical activity、picky eating、cluster RCT preschool emotion/language、shared book/pretend play meta-analysis。全文を読めたのは Janssen 2020(UCLの機関リポジトリのPDF)の1件で基準外。このPDFは offset 0 のあと offset 39000 で取り直すと最後まで逐語で読めた。ほかの候補(学校単位の情動教育試験、ごっこ遊びのメタ分析、共有読書のメタ分析)は、家庭に落とし込みにくい、既存の記事と分野が近い、全文が未取得のため選ばず(未確認)。この実行では claude-artifacts のツールは見つからず、Artifactも更新していない。次回は、画面時間・睡眠の観察研究を避け、食事・遊び・園生活の無作為化試験を探す。
 - 2026-11-10: 追加なし(見送り)。検索語は preschool RCT parents Frontiers/PLOS、responsive feeding meta-analysis、preschool sleep RCT、systematic review reading/play/bedtime。全文を読めたのは Frontiers in Psychiatry のレビュー1件のみで基準外。Frontiers(Sleep)とPMCは PROVENANCE_REQUIRED で読めず(未確認)。この実行では web-fetch エージェントが、許可の確認に答えがない URL を再試行できず、同じ失敗が続いた。claude-artifacts のツールは見つからず、Artifactは更新していない。次回は、PLOS・Nature など別の出版社の全文から、幼児一般が対象のRCT/メタ分析を探す。
 - 2026-11-11: 追加なし(見送り)。検索語は Scientific Reports/PLOS ONE/Frontiers の preschool RCT、outdoor play cohort、digital parenting Peru。上の3件を確認したが、2件は本文を読めず(機関リポジトリのPDFは client_error と [binary data])、Frontiersの1件は本文・表の食い違いと横断研究で基準外。機関リポジトリのPDFは取れないことが多い(2回確認)ので、出版社の全文HTML(Frontiers・PLOS)を先に探す。この実行では claude-artifacts と add_repo のツールは見つからず、Artifactは更新していない(追加が無いため)。
+- 2026-11-12: 追加なし(見送り)。検索語は preschool RCT PLOS/Sci Rep/Frontiers、picky eating responsive feeding、parenting stress、routines。全文を読めた2件(上の屋外あそび・親のストレス)は基準外。PMC・Frontiers・who.int は読めず(PMCは確認画面、他は PROVENANCE_REQUIRED。未確認)。PMC6861919(IJERPH)は web-fetch の offset 0・39000・78000 で最後まで読めた。リポジトリは既にあり git pull --ff-only origin main で最新(HEADはdetachedだったので main に切替)。この実行では claude-artifacts のツールは使わず、追加が無いのでArtifactも更新していない。次回は、PLOS・MDPIなど全文が読める出版社から、結果に差があり数字が表と合う幼児対象の無作為化試験かメタ分析を、候補を先に3件並べて探す。

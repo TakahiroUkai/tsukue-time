@@ -130,3 +130,4 @@ nav.tabs a.rs-link{font-weight:700;color:var(--accent)}
 
 .relbox{background:#eef8f1;border:1px solid #bfdcc8;border-radius:12px;padding:6px 18px 10px;margin:22px 0}
 .relbox h2{margin-top:10px}
+.relbox .grid{padding-left:0}

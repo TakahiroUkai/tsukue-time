@@ -370,7 +370,7 @@ TAB_TIPS = {
 SHEET_FAQ = [
     ("無料で使えますか?", "はい。このページのシートは、無料で印刷して使えます。登録もいりません。"),
     ("どうやって印刷しますか?", "「このシートを印刷する(A4)」のボタンを押します。印刷画面で、用紙はA4、倍率は100%にします。"),
-    ("白黒のプリンターでも使えますか?", "使えます。白黒で印刷しても、なぞる線は見えます。コピー用紙でも使えます。"),
+    ("白黒のプリンターでも使えますか?", "使えます。白黒で印刷しても、線や点は見えます。コピー用紙でも使えます。"),
     ("同じシートを何枚も印刷してよいですか?", "はい。家庭・保育園・教室で、必要な枚数を印刷して使えます。再配布や販売はご遠慮ください。"),
 ]
 
@@ -404,7 +404,7 @@ def next_step_html(tab, rel):
     if not ns:
         return ""
     t = TAB[ns[0]]
-    return ('<h2 class="noprint">つぎに ためすなら</h2><div class="box ok noprint"><p>%s できなくても大丈夫です。</p>'
+    return ('<h2 class="noprint">つぎに ためすなら</h2><div class="box ok noprint"><p>%s</p>'
             '<p><a href="%s%s/"><b>%s のシートを見る &rarr;</b></a></p></div>' % (esc(ns[1]), rel, ns[0], esc(t["label"])))
 
 
@@ -443,7 +443,6 @@ def build_sheet(s, i):
         out += '<p class="hint noprint">シートの中の入力欄に書き込めます。入力した内容は、この端末のブラウザの中にだけ保存されます。</p>'
     out += '<div class="sheet-wrap"><div class="sheet" data-sheet="%s">%s</div></div>' % (esc(s["id"]), frag.rstrip())
     out += '<h2>使い方</h2><div class="box"><ol>%s</ol></div>' % "".join("<li>%s</li>" % esc(h) for h in t["howto"])
-    out += tips_faq_html(s)
     out += books_html(s["tab"])
     nav = ""
     if prev_s:
@@ -459,6 +458,7 @@ def build_sheet(s, i):
     others = others[:4]
     if others:
         out += '<h2 class="noprint">同じ種類のほかのシート</h2><ul class="grid noprint">%s</ul>' % "".join(card(x, rel) for x in others)
+    out += tips_faq_html(s)
     out += next_step_html(s["tab"], rel)
     out += other_tabs(rel, s["tab"], noprint=True)
     out += '<p><a href="./">&larr; %s の一覧にもどる</a></p>' % esc(t["label"])

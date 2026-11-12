@@ -352,6 +352,39 @@ def build_tab(t):
     write(t["id"] + "/index.html", out)
 
 
+# なぞり書き系のシートに出す「書き方のコツ」と「よくある質問」
+TAB_TIPS = {
+    "kana": ["うすい字や点線の上を、ゆっくりなぞります。はみ出しても、そのまま続けてかまいません。",
+             "1回に全部やらず、数文字ずつ進めます。できなくても大丈夫です。",
+             "なぞる前に、おとなが指でなぞって見せると、書く向きが伝わりやすくなります。"],
+    "abc": ["うすい字や点線の上を、ゆっくりなぞります。はみ出しても、そのまま続けてかまいません。",
+            "1回に全部やらず、数文字ずつ進めます。できなくても大丈夫です。",
+            "文字の名前を声に出しながらなぞると、形と音を一緒に楽しめます。"],
+    "trace": ["はじめは、太いペンやクレヨンを使うと、線が見えやすくなります。",
+              "線からはみ出しても、そのまま続けてかまいません。楽しく続けられるペースで進めます。",
+              "紙が動くときは、おとなが紙の端を軽く押さえます。"],
+}
+SHEET_FAQ = [
+    ("無料で使えますか?", "はい。このページのシートは、無料で印刷して使えます。登録もいりません。"),
+    ("どうやって印刷しますか?", "「このシートを印刷する(A4)」のボタンを押します。印刷画面で、用紙はA4、倍率は100%にします。"),
+    ("白黒のプリンターでも使えますか?", "使えます。色はモノクロで十分です。コピー用紙でも使えます。"),
+    ("同じシートを何枚も印刷してよいですか?", "はい。家庭・保育園・教室で、必要な枚数を印刷して使えます。再配布や販売はご遠慮ください。"),
+]
+
+
+def tips_faq_html(tab):
+    tips = TAB_TIPS.get(tab)
+    if not tips:
+        return ""
+    out = '<h2 class="noprint">書き方のコツ</h2><div class="box noprint"><ul>%s</ul></div>' % "".join("<li>%s</li>" % esc(x) for x in tips)
+    out += '<h2 class="noprint">よくある質問</h2><div class="box noprint faq">%s</div>' % "".join(
+        "<p><b>%s</b><br>%s</p>" % (esc(q), esc(a)) for q, a in SHEET_FAQ)
+    ld = {"@context": "https://schema.org", "@type": "FAQPage", "mainEntity": [
+        {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in SHEET_FAQ]}
+    out += '<script type="application/ld+json">%s</script>' % json.dumps(ld, ensure_ascii=False).replace("</", "<\\/")
+    return out
+
+
 def build_sheet(s, i):
     rel = "../"
     t = TAB[s["tab"]]
@@ -387,6 +420,7 @@ def build_sheet(s, i):
         out += '<p class="hint noprint">シートの中の入力欄に書き込めます。入力した内容は、この端末のブラウザの中にだけ保存されます。</p>'
     out += '<div class="sheet-wrap"><div class="sheet" data-sheet="%s">%s</div></div>' % (esc(s["id"]), frag.rstrip())
     out += '<h2>使い方</h2><div class="box"><ol>%s</ol></div>' % "".join("<li>%s</li>" % esc(h) for h in t["howto"])
+    out += tips_faq_html(s["tab"])
     out += books_html(s["tab"])
     nav = ""
     if prev_s:

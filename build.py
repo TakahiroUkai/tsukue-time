@@ -208,10 +208,12 @@ def build_research(r):
     out += '<h2>わかったこと</h2><ul>%s</ul>' % "".join("<li>%s</li>" % esc(x) for x in r["findings"])
     out += '<h2>ふだんの子育てへの活かし方</h2><div class="box ok"><ol class="tips">%s</ol></div>' % "".join(
         "<li><b>%s</b><br>%s</li>" % (esc(a["title"]), esc(a["text"])) for a in r["athome"])
-    out += '<h2>読むときの注意</h2><ul>%s</ul>' % "".join("<li>%s</li>" % esc(x) for x in r["limits"])
     rel_sheets = [SHEET_BY_ID[i] for i in r.get("related", []) if i in SHEET_BY_ID]
     if rel_sheets:
-        out += '<h2>あわせて使えるシート</h2><ul class="grid">%s</ul>' % "".join(card(x, rel) for x in rel_sheets)
+        out += ('<div class="relbox noprint"><h2>あわせて使えるシート</h2><p>印刷して、そのまま使えます。</p>'
+                '<ul class="grid">%s</ul><p><a href="../">ほかのシートも見る &rarr;</a></p></div>'
+                % "".join(card(x, rel) for x in rel_sheets))
+    out += '<h2>読むときの注意</h2><ul>%s</ul>' % "".join("<li>%s</li>" % esc(x) for x in r["limits"])
     out += ('<h2>出典</h2><p class="cite">%s(%d). %s. <i>%s</i>. DOI: %s<br><a href="%s" rel="noopener" target="_blank">論文のページを開く</a></p>'
             % (esc(s["authors"]), s["year"], esc(s["title"]), esc(s["journal"]), esc(s["doi"]), esc(s["url"])))
     out += '<div class="box warn"><p>%s</p></div>' % esc(RES["notice"])
@@ -353,28 +355,30 @@ def build_tab(t):
 
 
 # なぞり書き系のシートに出す「書き方のコツ」と「よくある質問」
+TRACE_IDS = {"name", "abct1", "abct2", "abct3", "abc-name"}  # kana・abc のうち、なぞり書きのシート
 TAB_TIPS = {
-    "kana": ["うすい字や点線の上を、ゆっくりなぞります。はみ出しても、そのまま続けてかまいません。",
+    "kana": ["うすい字の上を、ゆっくりなぞります。はみ出しても、そのまま続けてかまいません。",
              "1回に全部やらず、数文字ずつ進めます。できなくても大丈夫です。",
              "なぞる前に、おとなが指でなぞって見せると、書く向きが伝わりやすくなります。"],
-    "abc": ["うすい字や点線の上を、ゆっくりなぞります。はみ出しても、そのまま続けてかまいません。",
-            "1回に全部やらず、数文字ずつ進めます。できなくても大丈夫です。",
-            "文字の名前を声に出しながらなぞると、形と音を一緒に楽しめます。"],
-    "trace": ["はじめは、太いペンやクレヨンを使うと、線が見えやすくなります。",
-              "線からはみ出しても、そのまま続けてかまいません。楽しく続けられるペースで進めます。",
-              "紙が動くときは、おとなが紙の端を軽く押さえます。"],
+    "abc": ["うすい字の上を、ゆっくりなぞります。はみ出しても、そのまま続けてかまいません。",
+            "文字の名前を声に出しながらなぞると、形と音を一緒に楽しめます。",
+            "できなくても大丈夫です。楽しく続けられるペースで進めます。"],
+    "trace": ["線からはみ出しても、そのまま続けてかまいません。楽しく続けられるペースで進めます。",
+              "紙が動くときは、おとなが紙の端を軽く押さえます。",
+              "鉛筆を使うときは、濃いめの芯(2Bなど)だと、軽い力でも線が見えやすくなります。"],
 }
 SHEET_FAQ = [
     ("無料で使えますか?", "はい。このページのシートは、無料で印刷して使えます。登録もいりません。"),
     ("どうやって印刷しますか?", "「このシートを印刷する(A4)」のボタンを押します。印刷画面で、用紙はA4、倍率は100%にします。"),
-    ("白黒のプリンターでも使えますか?", "使えます。色はモノクロで十分です。コピー用紙でも使えます。"),
+    ("白黒のプリンターでも使えますか?", "使えます。白黒で印刷しても、なぞる線は見えます。コピー用紙でも使えます。"),
     ("同じシートを何枚も印刷してよいですか?", "はい。家庭・保育園・教室で、必要な枚数を印刷して使えます。再配布や販売はご遠慮ください。"),
 ]
 
 
-def tips_faq_html(tab):
+def tips_faq_html(sheet):
+    tab = sheet["tab"]
     tips = TAB_TIPS.get(tab)
-    if not tips:
+    if not tips or (tab != "trace" and sheet["id"] not in TRACE_IDS):
         return ""
     out = '<h2 class="noprint">書き方のコツ</h2><div class="box noprint"><ul>%s</ul></div>' % "".join("<li>%s</li>" % esc(x) for x in tips)
     out += '<h2 class="noprint">よくある質問</h2><div class="box noprint faq">%s</div>' % "".join(
@@ -383,6 +387,25 @@ def tips_faq_html(tab):
         {"@type": "Question", "name": q, "acceptedAnswer": {"@type": "Answer", "text": a}} for q, a in SHEET_FAQ]}
     out += '<script type="application/ld+json">%s</script>' % json.dumps(ld, ensure_ascii=False).replace("</", "<\\/")
     return out
+
+
+# シートのページの終わりに出す「つぎに ためすなら」(タブごと)
+NEXT_STEP = {
+    "trace": ("kana", "線をなぞるのに慣れてきたら、ひらがな・数字のシートも試せます。"),
+    "kana": ("abc", "ひらがな・数字のつぎに、アルファベットのシートも試せます。"),
+    "abc": ("daily", "少しずつ続けたいときは、カレンダーなどのシートが使えます。"),
+    "art": ("trace", "ぬりえのつぎに、線をなぞるシートや点つなぎも試せます。"),
+    "seal": ("art", "シールのつぎに、クレヨンでぬるぬりえも試せます。"),
+}
+
+
+def next_step_html(tab, rel):
+    ns = NEXT_STEP.get(tab)
+    if not ns:
+        return ""
+    t = TAB[ns[0]]
+    return ('<h2 class="noprint">つぎに ためすなら</h2><div class="box ok noprint"><p>%s できなくても大丈夫です。</p>'
+            '<p><a href="%s%s/"><b>%s のシートを見る &rarr;</b></a></p></div>' % (esc(ns[1]), rel, ns[0], esc(t["label"])))
 
 
 def build_sheet(s, i):
@@ -420,7 +443,7 @@ def build_sheet(s, i):
         out += '<p class="hint noprint">シートの中の入力欄に書き込めます。入力した内容は、この端末のブラウザの中にだけ保存されます。</p>'
     out += '<div class="sheet-wrap"><div class="sheet" data-sheet="%s">%s</div></div>' % (esc(s["id"]), frag.rstrip())
     out += '<h2>使い方</h2><div class="box"><ol>%s</ol></div>' % "".join("<li>%s</li>" % esc(h) for h in t["howto"])
-    out += tips_faq_html(s["tab"])
+    out += tips_faq_html(s)
     out += books_html(s["tab"])
     nav = ""
     if prev_s:
@@ -436,6 +459,7 @@ def build_sheet(s, i):
     others = others[:4]
     if others:
         out += '<h2 class="noprint">同じ種類のほかのシート</h2><ul class="grid noprint">%s</ul>' % "".join(card(x, rel) for x in others)
+    out += next_step_html(s["tab"], rel)
     out += other_tabs(rel, s["tab"], noprint=True)
     out += '<p><a href="./">&larr; %s の一覧にもどる</a></p>' % esc(t["label"])
     out += "</div></main>" + footer(rel)

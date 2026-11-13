@@ -74,10 +74,11 @@ def head(title, desc, rel, path, img=None, full=None):
 <link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Klee+One:wght@400;600&family=Zen+Maru+Gothic:wght@400;500;700&family=Andika:wght@400;700&display=swap">
 <link rel="stylesheet" href="%sassets/site.css"><link rel="stylesheet" href="%sassets/sheet.css">
+<script>(function(){try{var m=location.search.match(/[?&]noga=([01])/),k="noga",id="%s";if(m){if(m[1]=="1")localStorage.setItem(k,"1");else localStorage.removeItem(k);var f=function(){var d=document.createElement("div");d.setAttribute("role","status");d.style.cssText="position:fixed;left:8px;right:8px;bottom:8px;z-index:99;padding:10px 14px;background:#222;color:#fff;border-radius:8px;font:14px sans-serif;text-align:center";d.textContent=m[1]=="1"?"この端末のブラウザを、アクセス解析から除外しました":"この端末のブラウザの、アクセス解析の除外をやめました";document.body.appendChild(d);setTimeout(function(){d.remove()},4000)};if(document.body)f();else addEventListener("DOMContentLoaded",f)}if(localStorage.getItem(k)=="1")window["ga-disable-"+id]=true}catch(e){}})();</script>
 <script async src="https://www.googletagmanager.com/gtag/js?id=%s"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','%s');</script>
 </head><body>
-""" % (esc(full_title), esc(desc), esc(url), esc(full_title), esc(desc), esc(url), og, rel, rel, ga, ga)
+""" % (esc(full_title), esc(desc), esc(url), esc(full_title), esc(desc), esc(url), og, rel, rel, ga, ga, ga)
 
 
 def header(rel, current):

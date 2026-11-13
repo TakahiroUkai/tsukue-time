@@ -84,6 +84,8 @@
 | 就学前の日課と社会情緒(PMC12276931) | PMCの確認画面で読めなかった |
 | Frontiers in Psychology 2026, fpsyg.2026.1644623 | PROVENANCE_REQUIREDで読めなかった。未確認 |
 | WHO 5歳未満の身体活動・座位・睡眠のガイドライン(2019) | who.int が PROVENANCE_REQUIRED で読めなかった。未確認 |
+| 就寝前の読み聞かせで問いかけを足す2週間の試験(Winter ら, PLOS ONE, 2026, pone.0340068) | 対象が6〜8歳で幼児ではない。解析38人で、群の差は主要な項目でほぼ無し(流暢性の交互作用だけ p=.036)。読書なしの対照群が無く、本文内の数字の食い違いが複数(読書頻度の合計100.9%、下位尺度の範囲など) |
+| デジタル子育て介入の系統的レビュー(Sandborg ら, J Med Internet Res, 2026, e85525) | 38介入の結果が「混在」で、メタ分析はできず、家庭での活かし方に落とし込めない。要旨と本文で試験の内訳の件数が合わない |
 
 ## 実行ログ
 
@@ -103,3 +105,4 @@
 - 2026-11-10: 追加なし(見送り)。検索語は preschool RCT parents Frontiers/PLOS、responsive feeding meta-analysis、preschool sleep RCT、systematic review reading/play/bedtime。全文を読めたのは Frontiers in Psychiatry のレビュー1件のみで基準外。Frontiers(Sleep)とPMCは PROVENANCE_REQUIRED で読めず(未確認)。この実行では web-fetch エージェントが、許可の確認に答えがない URL を再試行できず、同じ失敗が続いた。claude-artifacts のツールは見つからず、Artifactは更新していない。次回は、PLOS・Nature など別の出版社の全文から、幼児一般が対象のRCT/メタ分析を探す。
 - 2026-11-11: 追加なし(見送り)。検索語は Scientific Reports/PLOS ONE/Frontiers の preschool RCT、outdoor play cohort、digital parenting Peru。上の3件を確認したが、2件は本文を読めず(機関リポジトリのPDFは client_error と [binary data])、Frontiersの1件は本文・表の食い違いと横断研究で基準外。機関リポジトリのPDFは取れないことが多い(2回確認)ので、出版社の全文HTML(Frontiers・PLOS)を先に探す。この実行では claude-artifacts と add_repo のツールは見つからず、Artifactは更新していない(追加が無いため)。
 - 2026-11-12: 追加なし(見送り)。検索語は preschool RCT PLOS/Sci Rep/Frontiers、picky eating responsive feeding、parenting stress、routines。全文を読めた2件(上の屋外あそび・親のストレス)は基準外。PMC・Frontiers・who.int は読めず(PMCは確認画面、他は PROVENANCE_REQUIRED。未確認)。PMC6861919(IJERPH)は web-fetch の offset 0・39000・78000 で最後まで読めた。リポジトリは既にあり git pull --ff-only origin main で最新(HEADはdetachedだったので main に切替)。この実行では claude-artifacts のツールは使わず、追加が無いのでArtifactも更新していない。次回は、PLOS・MDPIなど全文が読める出版社から、結果に差があり数字が表と合う幼児対象の無作為化試験かメタ分析を、候補を先に3件並べて探す。
+- 2026-11-13: 追加なし(見送り)。検索語は preschool RCT PLOS ONE/Sci Rep、meta-analysis sleep/picky eating/free play、bedtime reading language。全文を最後まで読めた3件(JMIR 2026のレビュー、Frontiers 2025の絵本と向社会行動=既に見送り済みの研究、PLOS ONE 2026の就寝前読み聞かせ)は基準外。PLOS ONEは並列に取ると RATE_LIMIT_EXCEEDED、通常の記事ページ(article?id=)を1件ずつ取ると offset 39916・78000 で最後まで読めた(printable の file URL は不可)。この実行では add_repo と claude-artifacts のツールは見つからず、追加が無いのでArtifactも更新していない。次回は、対象が3〜5歳で、群の差が主要な結果にある無作為化試験を、検索結果の段階で年齢を確かめてから取る。

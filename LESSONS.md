@@ -86,6 +86,8 @@
 | WHO 5歳未満の身体活動・座位・睡眠のガイドライン(2019) | who.int が PROVENANCE_REQUIRED で読めなかった。未確認 |
 | 就寝前の読み聞かせで問いかけを足す2週間の試験(Winter ら, PLOS ONE, 2026, pone.0340068) | 対象が6〜8歳で幼児ではない。解析38人で、群の差は主要な項目でほぼ無し(流暢性の交互作用だけ p=.036)。読書なしの対照群が無く、本文内の数字の食い違いが複数(読書頻度の合計100.9%、下位尺度の範囲など) |
 | デジタル子育て介入の系統的レビュー(Sandborg ら, J Med Internet Res, 2026, e85525) | 38介入の結果が「混在」で、メタ分析はできず、家庭での活かし方に落とし込めない。要旨と本文で試験の内訳の件数が合わない |
+| 親向け24時間の動きの介入試験(Feng ら, IJBNPA, 2024, s12966-024-01650-2。香港・147組) | 全文は機関リポジトリのPDFを offset 39000 で最後まで読めたが、主要な結果は終了直後に差なしで、24週後の1つの比較だけ p=0.046(per-protocol では有意でない)。表と本文の食い違い(全群でASIが低下しているのに「統合群だけ」と記述など)が複数。園単位のクラスタを解析で考慮していない |
+| INSIGHT 応答的な子育て介入と自己調整(PubMed 39325391, 2024) | PubMedが本文なしの空ページで返り、書誌・結果を確かめられなかった。未確認 |
 
 ## 実行ログ
 
@@ -106,3 +108,4 @@
 - 2026-11-11: 追加なし(見送り)。検索語は Scientific Reports/PLOS ONE/Frontiers の preschool RCT、outdoor play cohort、digital parenting Peru。上の3件を確認したが、2件は本文を読めず(機関リポジトリのPDFは client_error と [binary data])、Frontiersの1件は本文・表の食い違いと横断研究で基準外。機関リポジトリのPDFは取れないことが多い(2回確認)ので、出版社の全文HTML(Frontiers・PLOS)を先に探す。この実行では claude-artifacts と add_repo のツールは見つからず、Artifactは更新していない(追加が無いため)。
 - 2026-11-12: 追加なし(見送り)。検索語は preschool RCT PLOS/Sci Rep/Frontiers、picky eating responsive feeding、parenting stress、routines。全文を読めた2件(上の屋外あそび・親のストレス)は基準外。PMC・Frontiers・who.int は読めず(PMCは確認画面、他は PROVENANCE_REQUIRED。未確認)。PMC6861919(IJERPH)は web-fetch の offset 0・39000・78000 で最後まで読めた。リポジトリは既にあり git pull --ff-only origin main で最新(HEADはdetachedだったので main に切替)。この実行では claude-artifacts のツールは使わず、追加が無いのでArtifactも更新していない。次回は、PLOS・MDPIなど全文が読める出版社から、結果に差があり数字が表と合う幼児対象の無作為化試験かメタ分析を、候補を先に3件並べて探す。
 - 2026-11-13: 追加なし(見送り)。検索語は preschool RCT PLOS ONE/Sci Rep、meta-analysis sleep/picky eating/free play、bedtime reading language。全文を最後まで読めた3件(JMIR 2026のレビュー、Frontiers 2025の絵本と向社会行動=既に見送り済みの研究、PLOS ONE 2026の就寝前読み聞かせ)は基準外。PLOS ONEは並列に取ると RATE_LIMIT_EXCEEDED、通常の記事ページ(article?id=)を1件ずつ取ると offset 39916・78000 で最後まで読めた(printable の file URL は不可)。この実行では add_repo と claude-artifacts のツールは見つからず、追加が無いのでArtifactも更新していない。次回は、対象が3〜5歳で、群の差が主要な結果にある無作為化試験を、検索結果の段階で年齢を確かめてから取る。
+- 2026-11-14: 追加なし(見送り)。検索語は preschool RCT parents PLOS ONE/Sci Rep、picky eating responsive feeding、free play meta-analysis、24-hour movement parent intervention。全文を最後まで読めたのは Feng 2024(機関リポジトリのPDF、offset 0 と 39000 で逐語で読めた)の1件で基準外。INSIGHT試験はPubMedが空ページで未確認。PLOS ONE・MDPIの候補は検索結果の段階で幼児一般でない、または観察研究。リポジトリは既にあり main に切替えて git pull --ff-only origin main で最新。この実行では add_repo と claude-artifacts のツールは見つからず、追加が無いのでArtifactは更新していない。次回は、PubMed以外(出版社HTML・PLOS・Frontiers)で、幼児一般のRCT/メタ分析を、検索結果の段階で題名・年齢・結果の差を確かめてから取る。

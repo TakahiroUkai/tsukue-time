@@ -143,6 +143,66 @@
    "tab": "trace",
    "title": "なぞりがき ゆき",
    "desc": "てんせんをなぞる・季節"
+  },
+  {
+   "id": "t-maze-xmas",
+   "tab": "trace",
+   "title": "めいろ トナカイと ツリー",
+   "desc": "太い線・クリスマス"
+  },
+  {
+   "id": "t-maze-penguin",
+   "tab": "trace",
+   "title": "めいろ ペンギンの こおりのうえ",
+   "desc": "太い線・ふゆ"
+  },
+  {
+   "id": "t-maze-mochi",
+   "tab": "trace",
+   "title": "めいろ おもちを おぞうにへ",
+   "desc": "太い線・お正月"
+  },
+  {
+   "id": "t-maze-oni",
+   "tab": "trace",
+   "title": "めいろ おにから まめへ",
+   "desc": "太い線・節分"
+  },
+  {
+   "id": "t-maze-dino",
+   "tab": "trace",
+   "title": "めいろ きょうりゅうの たまご",
+   "desc": "太い線・きょうりゅう"
+  },
+  {
+   "id": "t-count-xmas",
+   "tab": "trace",
+   "title": "かぞえて ぬろう クリスマス",
+   "desc": "1〜5・数あそび"
+  },
+  {
+   "id": "t-count-fish",
+   "tab": "trace",
+   "title": "かぞえて ぬろう さかな",
+   "desc": "1〜5・数あそび"
+  },
+  {
+   "id": "t-maze-train",
+   "tab": "trace",
+   "title": "めいろ でんしゃの えき",
+   "desc": "太い線・のりもの"
+  },
+  {
+   "id": "t-maze-rabbit",
+   "tab": "trace",
+   "title": "めいろ うさぎの にんじん",
+   "desc": "太い線・どうぶつ"
+  },
+  {
+   "id": "t-count-snow",
+   "tab": "trace",
+   "title": "かぞえて ぬろう ゆきだるま",
+   "desc": "1〜5・数あそび"
   }
  ]
 }

@@ -90,6 +90,8 @@
 | INSIGHT 応答的な子育て介入と自己調整(PubMed 39325391, 2024) | PubMedが本文なしの空ページで返り、書誌・結果を確かめられなかった。未確認 |
 | 感情調整と親の温かさの縦断研究(Isdahl-Troye ら, Scientific Reports, 2025, s41598-025-06846-5) | 観察研究で親回答のみ。追跡で脱落48%(4回目)。対象が3〜10歳に及ぶ。適合度のχ2(35)=22.0とP=.04が合わない、検定の自由度が人数より大きいなど食い違い。表を本文で確かめられず、温かさと行動の問題の関連は小さい |
 | 就学前の睡眠時間と後の行動・認知の個人データメタ分析(PMC10805899, 2024) | PMCが権限(PROVENANCE_REQUIRED)で読めなかった。未確認 |
+| 感覚に基づく介入の系統的レビュー(Piller ら, Frontiers in Pediatrics, 2025, fped.2025.1720179) | 対象が0〜21歳の感覚処理の困りごとがある子で、幼児一般ではない。医療・療育寄りで、結果の数字も表にない(補足ファイル) |
+| 5〜6歳の集団音楽ゲームと協力行動の試験(Yang ら, Frontiers in Psychology, 2026, fpsyg.2026.1763858) | 60人・1園で、対照群は活動なし。効果量が本文内で食い違い(0.177と0.25)、割合(81.3%など)が人数30に合わない。要旨の「安定」と本文が合わない。園での活動で家庭に落とし込みにくい |
 
 ## 実行ログ
 
@@ -112,3 +114,4 @@
 - 2026-11-13: 追加なし(見送り)。検索語は preschool RCT PLOS ONE/Sci Rep、meta-analysis sleep/picky eating/free play、bedtime reading language。全文を最後まで読めた3件(JMIR 2026のレビュー、Frontiers 2025の絵本と向社会行動=既に見送り済みの研究、PLOS ONE 2026の就寝前読み聞かせ)は基準外。PLOS ONEは並列に取ると RATE_LIMIT_EXCEEDED、通常の記事ページ(article?id=)を1件ずつ取ると offset 39916・78000 で最後まで読めた(printable の file URL は不可)。この実行では add_repo と claude-artifacts のツールは見つからず、追加が無いのでArtifactも更新していない。次回は、対象が3〜5歳で、群の差が主要な結果にある無作為化試験を、検索結果の段階で年齢を確かめてから取る。
 - 2026-11-14: 追加なし(見送り)。検索語は preschool RCT parents PLOS ONE/Sci Rep、picky eating responsive feeding、free play meta-analysis、24-hour movement parent intervention。全文を最後まで読めたのは Feng 2024(機関リポジトリのPDF、offset 0 と 39000 で逐語で読めた)の1件で基準外。INSIGHT試験はPubMedが空ページで未確認。PLOS ONE・MDPIの候補は検索結果の段階で幼児一般でない、または観察研究。リポジトリは既にあり main に切替えて git pull --ff-only origin main で最新。この実行では add_repo と claude-artifacts のツールは見つからず、追加が無いのでArtifactは更新していない。次回は、PubMed以外(出版社HTML・PLOS・Frontiers)で、幼児一般のRCT/メタ分析を、検索結果の段階で題名・年齢・結果の差を確かめてから取る。
 - 2026-11-16: 追加なし(見送り)。検索語は toddler vegetable repeated exposure RCT、preschool pretend play meta-analysis、preschool sleep meta-analysis、parent praise RCT、emotion regulation parent intervention。候補は上の2件と、見送り済みの Frontiers 1475387(非治療的な遊びのレビュー)の再出現。Nature(Sci Rep)は offset 0・39000・78000 で本文を読めたが、表は読めず基準外。この実行では add_repo と claude-artifacts のツールは見つからず、追加が無いのでArtifactは更新していない。次回は、見送り表と検索結果を先に照らし、幼児一般のRCTで、PLOS・Frontiers の全文が読めるものを探す。
+- 2026-11-16(2回目): 追加なし(見送り)。検索語は RCT preschool 3-5 parents PLOS ONE、toddlers meta-analysis sleep/feeding/play、preschool nature/music/cooking RCT。全文を最後まで読めた2件(上の表)は基準外。web-fetch は PDF(public-pages-files-2025.frontiersin.org の /pdf URL)を offset 0・39879 で最後まで読めた。この実行でも add_repo と claude-artifacts のツールは見つからず、追加が無いのでArtifactは更新していない。次回は、検索結果の段階で幼児一般・家庭で試せる題材に絞ってから取る。

@@ -420,7 +420,8 @@ def build_sheet(s, i):
     use = TAB_USE.get(s["tab"], "")
     desc = "%s。%s。%sA4で無料印刷できる、幼児向けのシートです。" % (s["title"], s["desc"].rstrip("。"), use + "。" if use else "")
     path = "%s/%s.html" % (s["tab"], s["id"])
-    out = head(s["title"], desc, rel, path, ("img/%s.png" % s["id"]) if thumb_exists(s["id"]) else None)
+    out = head(s["title"], desc, rel, path, ("img/%s.png" % s["id"]) if thumb_exists(s["id"]) else None,
+               full="%s|幼児向けの無料・印刷用 | %s" % (s["title"], CFG["name"]))
     out += header(rel, s["tab"])
     out += ('<main><div class="wrap"><p class="crumb"><a href="../">ホーム</a> &gt; <a href="./">%s</a> &gt; %s</p>'
             '<h1>%s</h1><p class="lead">%s</p>' % (esc(t["label"]), esc(s["title"]), esc(s["title"]), esc(s["desc"])))

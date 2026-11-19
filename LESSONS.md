@@ -96,6 +96,9 @@
 | 家庭での絵本の読み聞かせと発達のシステマティックレビュー(Galea ら, Frontiers in Language Sciences, 2025, flang.2025.1540562) | 全文は offset 39000 で最後まで読めたが、総人数(24,358と24,859)、検索の流れの件数、質の割合、ほか多数が本文・要旨・表で食い違う。I2などが示されず。既存の絵本の記事と分野も近い |
 | 甘さ控えめのおやつと保護者教育の試験(Mennella ら, Am J Clin Nutr, 2026, 101272) | ScienceDirect は要旨と導入の一部しか読めず、PMCは2027年まで公開されない。脱落・限界・結果の本文を確かめられない。70組で、塩味の好みが上がる副次的な結果もある。未確認 |
 | 家庭での算数遊びの予備試験(Deleş & Aral, Frontiers in Psychology, 2026, fpsyg.2026.1903843) | 本文は最後まで読めたが、20人(各群10人)の予備試験で、盲検なし、多重比較の補正なし、同じ園からの両群で混ざる可能性。方法と考察で園の種類の記述が食い違う |
+| 非応答的な食事の与え方と子の食行動のメタ分析(Wang ら, Nutrients, 2022, 14(9):1896。PMC9103127) | 全文は offset 0・39000・78000 で最後まで読めたが、94件中有意は19件で結果がまちまち。合算は2〜3件ずつで、効果量が小さい(β=0.04〜0.09)。研究数(10と9)、自発的参加の数(9と6)、満腹反応の向きが本文内で食い違い、標本の重複の可能性。2022年で最新でもない |
+| 3歳のほめ言葉と7歳ごろまでの行動(McDermott ら, Developmental Science, 2024, desc.13531) | Wileyが client_error で全文を取得できず(DOI経由も同じ)。ニュース記事だけでは書けない。60人の小規模。未確認 |
+| 幼児の親向けオンライン性教育の集団無作為化試験(Chen ら, Frontiers in Public Health, 2026, fpubh.2026.1817229) | 対象は幼稚園4園の保護者217人で、結果は親の知識・態度・行動の得点のみ(子どもの結果なし)。ふだんの子育てに落とし込みにくい |
 
 ## 実行ログ
 
@@ -121,3 +124,4 @@
 - 2026-11-16(2回目): 追加なし(見送り)。検索語は RCT preschool 3-5 parents PLOS ONE、toddlers meta-analysis sleep/feeding/play、preschool nature/music/cooking RCT。全文を最後まで読めた2件(上の表)は基準外。web-fetch は PDF(public-pages-files-2025.frontiersin.org の /pdf URL)を offset 0・39879 で最後まで読めた。この実行でも add_repo と claude-artifacts のツールは見つからず、追加が無いのでArtifactは更新していない。次回は、検索結果の段階で幼児一般・家庭で試せる題材に絞ってから取る。
 - 2026-11-17: 追加なし(見送り)。検索語は preschool RCT parents emotion/praise/routines、systematic review toddlers feeding/bedtime/reading、Scientific Reports preschool RCT、BMC cluster RCT preschool、cohort toddlers sleep/play。全文を最後まで読めた2件(上の表)は基準外。Frontiers の xml URL(public-pages-files-2025.frontiersin.org/.../xml)は offset 0・39885・79770 で、PDF URL は offset 0・39000 で逐語で読めた。この実行でも add_repo と claude-artifacts のツールは見つからず、非公開Artifactは更新できなかった(未確認:環境の設定)。
 - 2026-11-18: 追加なし(見送り)。検索語は preschool RCT parents PLOS ONE/Frontiers、meta-analysis parent-child shared activity、low-sweet snacks RCT。候補は上の2件と、見送り済みの PLOS Digital Health(pdig.0001357)の再出現。ScienceDirect(S000291652600081X)は本文が機関ログイン必須で要旨しか読めない。Frontiers(fpsyg.2026.1903843)は offset 0・39000・78000 で最後の節まで読めた。この実行では add_repo と claude-artifacts のツールは見つからず、追加が無いのでArtifactは更新していない。リポジトリは既にあり main に切替えて git pull --ff-only origin main で最新。次回は、全文が読めて、20人超の群で主要な結果に差があるRCT/メタ分析を、検索結果の段階で規模を確かめてから取る。
+- 2026-11-19: 追加なし(見送り)。検索語は preschool RCT parents PLOS ONE/Frontiers 2026、toddlers meta-analysis responsive feeding、Developmental Science praise。上の3件を確認して基準外。PMC9103127(Nutrients)は web-fetch で offset 0・39000・78000 とも逐語で読めた(確認画面なし)。Wiley(onlinelibrary.wiley.com と doi.org)は client_error。web-fetch エージェントは検索用のURLを組み立てられないので、PMC版は直接URLが要る。リポジトリは HEAD が detached だったので main に切替えて git pull --ff-only で最新。追加が無いのでArtifactは更新していない。次回は、検索結果の段階で子どもの結果(観察・測定)があり、人数が数百人規模のPLOS・Frontiers・MDPIの試験かメタ分析に絞る。

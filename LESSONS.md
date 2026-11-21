@@ -101,6 +101,11 @@
 | 幼児の親向けオンライン性教育の集団無作為化試験(Chen ら, Frontiers in Public Health, 2026, fpubh.2026.1817229) | 対象は幼稚園4園の保護者217人で、結果は親の知識・態度・行動の得点のみ(子どもの結果なし)。ふだんの子育てに落とし込みにくい |
 | 親が進める幼児の実行機能の介入の系統的レビュー(O'Reilly ら, Developmental Review, 2025, 10.1016/j.dr.2025.101198) | 全文を読めず(ORAのPDFは別の論文だった)、要旨だけ。8件・1,815人のメタ分析で、全体の差は有意でなく、追跡の2件だけ差あり。限界・heterogeneityを確かめられない |
 | 幼児の基本的な運動の介入と実行機能・社会情緒のメタ分析(Li ら, Frontiers in Psychology, 2025, fpsyg.2025.1721589) | 本文は最初の約31%しか逐語で読めず、後半は要約。要旨・結果・考察で数字が食い違う(信頼区間、頻度の定義、効果量、I2が68%と33.5%)。10件で社会情緒の効果は小さい |
+| 就学前の運動と栄養の園での介入と肥満のシステマティックレビュー(Rico-González ら, J Nutr Metab, 2026, jnme/9563746。PMC12824873) | 12件すべてが偏りのリスク高。結果は7件で減少・5件で差なしとまちまちで、肥満の予防・減量に寄る医療寄りの題材。園での介入で家庭に落とし込みにくい。本文は約40,000字までしか逐語で読めず(全164,284字) |
+| 幼児の全般的発達遅滞の園での発見と介入(Zhang ら, Frontiers in Public Health, 2026, fpubh.2026.1860897) | 非ランダム化で、介入群15人・対照群15人(保護者の希望で割り付け、検出力0.65)。診断・療育の題材で、結果の節が約40,000字以降で読めなかった |
+| SPIRE幸福モデルのビデオフィードバック介入(Yang ら, Frontiers in Psychology, 2026, fpsyg.2026.1915668) | 27人のパイロット試験。主要な結果の数字・限界の節が約40,000字以降で読めなかった |
+| 親向けの画面時間介入と発達のメタ分析(IJBNPA, 2026, s12966-026-01919-8) | Springerが client_error で読めなかった。未確認 |
+| Healthy Start 介入と心理的ストレス・睡眠(Olsen ら, PLOS ONE, 2022, pone.0264514) | 543人の無作為化だが、睡眠・ストレスの主要結果はすべて差なし。2022年で最新でもない。後半は逐語で読めていない |
 
 ## 実行ログ
 
@@ -128,3 +133,4 @@
 - 2026-11-18: 追加なし(見送り)。検索語は preschool RCT parents PLOS ONE/Frontiers、meta-analysis parent-child shared activity、low-sweet snacks RCT。候補は上の2件と、見送り済みの PLOS Digital Health(pdig.0001357)の再出現。ScienceDirect(S000291652600081X)は本文が機関ログイン必須で要旨しか読めない。Frontiers(fpsyg.2026.1903843)は offset 0・39000・78000 で最後の節まで読めた。この実行では add_repo と claude-artifacts のツールは見つからず、追加が無いのでArtifactは更新していない。リポジトリは既にあり main に切替えて git pull --ff-only origin main で最新。次回は、全文が読めて、20人超の群で主要な結果に差があるRCT/メタ分析を、検索結果の段階で規模を確かめてから取る。
 - 2026-11-19: 追加なし(見送り)。検索語は preschool RCT parents PLOS ONE/Frontiers 2026、toddlers meta-analysis responsive feeding、Developmental Science praise。上の3件を確認して基準外。PMC9103127(Nutrients)は web-fetch で offset 0・39000・78000 とも逐語で読めた(確認画面なし)。Wiley(onlinelibrary.wiley.com と doi.org)は client_error。web-fetch エージェントは検索用のURLを組み立てられないので、PMC版は直接URLが要る。リポジトリは HEAD が detached だったので main に切替えて git pull --ff-only で最新。追加が無いのでArtifactは更新していない。次回は、検索結果の段階で子どもの結果(観察・測定)があり、人数が数百人規模のPLOS・Frontiers・MDPIの試験かメタ分析に絞る。
 - 2026-11-21: 追加なし(見送り)。検索語は preschool RCT parents 2026、meta-analysis executive function / self-regulation play、toddler tantrums / bedtime RCT、large RCT toddlers 2-5。候補は上の2件で基準外。ほかは見送り済みの睡眠試験(frsle.2025.1722530、Shiels、JAMA Pediatrics)の再出現。web-fetch は PDF/HTML を約39,900字で切って以降を要約にする(offset を指定できなかった回あり)。この実行では add_repo と claude-artifacts のツールは使わず、追加が無いのでArtifactは更新していない。リポジトリは HEAD が detached だったので main に切替えて git pull --ff-only origin main で最新。次回は、検索結果の段階で見送り表と照らし、要旨と本文の数字が一致する、幼児一般のRCT/メタ分析を探す。
+- 2026-11-22: 追加なし(見送り)。検索語は preschool RCT parents 2026 PLOS/Frontiers/MDPI、meta-analysis bedtime/mealtime/emotion coaching、cluster RCT sleep/language、meta-analysis shared reading/play。確認した5件は上の表のとおりで基準外(多くは約40,000字以降が逐語で読めず、offset を指定できなかった)。PLOS ONE の article/file?type=printable は RATE_LIMIT_EXCEEDED、article?id=10.1371/journal.pone.0337043 は別の論文(pone.0264514)を返した。PMC12337541 は確認画面。この実行では add_repo と claude-artifacts のツールは見つからず、追加が無いのでArtifactは更新していない。リポジトリは既にあり main に切替えて git pull --ff-only origin main で最新。次回は、検索結果の段階で、幼児一般・家庭で試せる題材・主要結果に差があるRCT/メタ分析を3件以上並べてから、web-fetch を1件ずつ取る。

@@ -111,6 +111,8 @@
 | 幼児の音楽訓練と実行機能のメタ分析(Lu ら, Frontiers in Psychology, 2025, fpsyg.2024.1522962) | 見送り済みの研究の再出現。本文は約27%しか逐語で読めず、限界は要約のみ |
 | 小児科での子育て介入 PriCARE の対面・オンライン比較(Andom ら, Frontiers in Pediatrics, 2026, fped.2026.1709280) | 本文は offset 0・39000・78000 で最後まで読めたが、考察と表で数字が食い違う(-7.45と-7.81、-3.80と-3.84)。対面は過去の試験との比較で、同時の対照ではない。年齢の下限が評価尺度の対象(2歳〜)と合わない。行動の問題を測る題材で、医療寄り。主要結果は親の回答のみ |
 | 親の養育スキルと実行機能の予備研究(Hendrawan ら, Child Neuropsychology, 2026, 10.1080/09297049.2025.2612025) | 2つの予備研究で、全文を取得できず(大学の記録ページは要旨のみ)、年齢・人数を確かめられない。未確認 |
+| 幼児の身ぶり・指さしと意図の分析(Karadağ ら, Infancy, 2026, infa.70072) | 本文は最後まで読めたが、既存動画の二次分析・横断で47人(13・18・23か月)。年齢差は補正後ほぼ有意でなく、人数の内訳や平均の数字が本文内で食い違い、家庭での活かし方に落とし込みにくい |
+| 空間の力を伸ばす園の介入(Lewis Presser ら, Education Sciences, 2025, educsci15060727) | 本文は最後まで読めたが、割り付け方法が不明の準実験で、年齢が未記載。教室数・教師数・検定の数字が本文内で複数食い違い、結論が結果より強い |
 
 ## 実行ログ
 
@@ -141,3 +143,4 @@
 - 2026-11-22: 追加なし(見送り)。検索語は preschool RCT parents 2026 PLOS/Frontiers/MDPI、meta-analysis bedtime/mealtime/emotion coaching、cluster RCT sleep/language、meta-analysis shared reading/play。確認した5件は上の表のとおりで基準外(多くは約40,000字以降が逐語で読めず、offset を指定できなかった)。PLOS ONE の article/file?type=printable は RATE_LIMIT_EXCEEDED、article?id=10.1371/journal.pone.0337043 は別の論文(pone.0264514)を返した。PMC12337541 は確認画面。この実行では add_repo と claude-artifacts のツールは見つからず、追加が無いのでArtifactは更新していない。リポジトリは既にあり main に切替えて git pull --ff-only origin main で最新。次回は、検索結果の段階で、幼児一般・家庭で試せる題材・主要結果に差があるRCT/メタ分析を3件以上並べてから、web-fetch を1件ずつ取る。
 - 2026-11-23: 追加なし(見送り)。検索語は preschool RCT parents 2026 PLOS/Frontiers/Nature、meta-analysis pretend play/music/nap/shared reading、cluster RCT toddlers BMJ Open/Pediatrics。確認した3件(上の表)は基準外。Frontiers(education・psychology)は web-fetch で本文の約22〜27%までしか逐語で読めず、後半は要約になった。add_repo・claude-artifacts のツールは使わず(リポジトリは既にあり main に切替えて pull で最新)、追加が無いのでArtifactは更新していない。次回は、検索結果の段階で見送り表と既存記事を先に照らし、PLOS・MDPI など逐語で最後まで読める出版社の、幼児一般のRCT/メタ分析を探す。
 - 2026-11-24: 追加なし(見送り)。検索語は preschool RCT parents 2026 PLOS/Frontiers/MDPI、meta-analysis family mealtimes/bedtime/free play。候補は上の2件で基準外(PMC 2件は確認画面、PLOS ONE の doi.org は PROVENANCE_REQUIRED で未確認)。Frontiers の full ページは web-fetch で offset 0・39000・78000 と取り直すと最後まで逐語で読めた。この実行では add_repo と claude-artifacts のツールは見つからず、追加が無いのでArtifactは更新していない。リポジトリは既にあり main で git pull --ff-only により最新。次回は、検索結果の段階で見送り表と照らし、本文と表の数字が合いそうな、幼児一般のRCT/メタ分析を探す。
+- 2026-11-25: 追加なし(見送り)。検索語は preschool block play spatial RCT、toddler gesture pointing longitudinal、bilingual preschool、nature daycare RCT。全文を最後まで読めた2件(上の表)は基準外。この実行でも add_repo / claude-artifacts のツールは見つからず、Artifact更新はできなかった(未確認:環境の設定)。

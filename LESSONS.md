@@ -113,6 +113,9 @@
 | 親の養育スキルと実行機能の予備研究(Hendrawan ら, Child Neuropsychology, 2026, 10.1080/09297049.2025.2612025) | 2つの予備研究で、全文を取得できず(大学の記録ページは要旨のみ)、年齢・人数を確かめられない。未確認 |
 | 幼児の身ぶり・指さしと意図の分析(Karadağ ら, Infancy, 2026, infa.70072) | 本文は最後まで読めたが、既存動画の二次分析・横断で47人(13・18・23か月)。年齢差は補正後ほぼ有意でなく、人数の内訳や平均の数字が本文内で食い違い、家庭での活かし方に落とし込みにくい |
 | 空間の力を伸ばす園の介入(Lewis Presser ら, Education Sciences, 2025, educsci15060727) | 本文は最後まで読めたが、割り付け方法が不明の準実験で、年齢が未記載。教室数・教師数・検定の数字が本文内で複数食い違い、結論が結果より強い |
+| 中国の幼稚園家庭向けデジタル子育て介入の家族の人数別・二次解析(Fang ら, J Med Internet Res, 2026, e101388) | 先行試験の二次解析で、家族の人数で分けた層ごとの結果。人数別の差の検定は有意でなく、層ごとに有意が出る箇所がまちまち。限界の第1〜3項を逐語で読めず(約39,953〜79,953字と約119,906〜139,953字が要約)。家庭に落とし込みにくい |
+| 長めの家族の食事と子どもの野菜・果物の摂取の無作為化試験(JAMA Pediatrics, 2023, PMC10071335) | PMCが PROVENANCE_REQUIRED で読めなかった(リダイレクト後のURL)。未確認 |
+| 家庭ベースの短い子育て介入の長期追跡(PMC12883591)ほか UCL版 Dhar ら 2026 PDF | PMC12883591 は見送り済み。UCL Discovery の PDF は client_error。未確認 |
 
 ## 実行ログ
 
@@ -144,3 +147,4 @@
 - 2026-11-23: 追加なし(見送り)。検索語は preschool RCT parents 2026 PLOS/Frontiers/Nature、meta-analysis pretend play/music/nap/shared reading、cluster RCT toddlers BMJ Open/Pediatrics。確認した3件(上の表)は基準外。Frontiers(education・psychology)は web-fetch で本文の約22〜27%までしか逐語で読めず、後半は要約になった。add_repo・claude-artifacts のツールは使わず(リポジトリは既にあり main に切替えて pull で最新)、追加が無いのでArtifactは更新していない。次回は、検索結果の段階で見送り表と既存記事を先に照らし、PLOS・MDPI など逐語で最後まで読める出版社の、幼児一般のRCT/メタ分析を探す。
 - 2026-11-24: 追加なし(見送り)。検索語は preschool RCT parents 2026 PLOS/Frontiers/MDPI、meta-analysis family mealtimes/bedtime/free play。候補は上の2件で基準外(PMC 2件は確認画面、PLOS ONE の doi.org は PROVENANCE_REQUIRED で未確認)。Frontiers の full ページは web-fetch で offset 0・39000・78000 と取り直すと最後まで逐語で読めた。この実行では add_repo と claude-artifacts のツールは見つからず、追加が無いのでArtifactは更新していない。リポジトリは既にあり main で git pull --ff-only により最新。次回は、検索結果の段階で見送り表と照らし、本文と表の数字が合いそうな、幼児一般のRCT/メタ分析を探す。
 - 2026-11-25: 追加なし(見送り)。検索語は preschool block play spatial RCT、toddler gesture pointing longitudinal、bilingual preschool、nature daycare RCT。全文を最後まで読めた2件(上の表)は基準外。この実行でも add_repo / claude-artifacts のツールは見つからず、Artifact更新はできなかった(未確認:環境の設定)。
+- 2026-11-26: 追加なし(見送り)。検索語は preschool RCT parents PLOS ONE 2026、meta-analysis sleep/play/feeding、toddler tantrums parent intervention、MDPI preschool mealtime。確認した候補は上の3件で、本文を最後まで確かめられた基準内の研究がなかった。PMCは www.ncbi.nlm.nih.gov が pmc.ncbi.nlm.nih.gov へ302し、転送先が PROVENANCE_REQUIRED になる。この実行では add_repo と claude-artifacts のツールは見つからず(リポジトリは既にあり main に切替えて pull で最新)、追加が無いのでArtifactは更新していない。次回は、PLOS・Frontiers の全文ページで、幼児一般・家庭で試せる題材・主要結果に差がある試験を、検索結果の段階で3件以上並べてから取る。

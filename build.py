@@ -337,11 +337,25 @@ TAB_USE = {
 }
 
 
+# タブの一覧ページの題名(検索される言葉に近づける)
+TAB_TITLE = {
+    "cards": "お題カード|幼児向けの無料・印刷用の絵カード",
+    "kana": "ひらがな表・数字表・なぞり書き|幼児向けの無料プリント",
+    "abc": "アルファベット表・なぞり書き|幼児向けの無料プリント",
+    "art": "ぬりえ|幼児向けの無料・印刷用ぬりえ",
+    "seal": "シールアート|丸シールで作る幼児向けの無料台紙",
+    "daily": "まいにち つづける|カレンダー・チャレンジ表など幼児向けの無料シート",
+    "trace": "なぞり書き・点つなぎ・めいろ|幼児向けの無料プリント",
+    "plan": "週間表・お手紙|無料で印刷できるテンプレート",
+}
+
+
 def build_tab(t):
     rel = "../"
     items = [s for s in SHEETS if s["tab"] == t["id"]]
     desc = "%s(%d枚)。%s" % (t["label"], len(items), t["intro"])
-    out = head(t["label"], desc, rel, t["id"] + "/", ("img/%s.png" % items[0]["id"]) if thumb_exists(items[0]["id"]) else None)
+    out = head(t["label"], desc, rel, t["id"] + "/", ("img/%s.png" % items[0]["id"]) if thumb_exists(items[0]["id"]) else None,
+               full=("%s | %s" % (TAB_TITLE[t["id"]], CFG["name"])) if t["id"] in TAB_TITLE else None)
     out += header(rel, t["id"])
     out += '<main><div class="wrap"><p class="crumb"><a href="../">ホーム</a> &gt; %s</p><h1>%s</h1><p class="lead">%s</p>' % (esc(t["label"]), esc(t["label"]), esc(t["intro"]))
     if t["id"] == "art":

@@ -203,6 +203,66 @@
    "tab": "trace",
    "title": "かぞえて ぬろう ゆきだるま",
    "desc": "1〜5・数あそび"
+  },
+  {
+   "id": "t-diff-xmas",
+   "tab": "trace",
+   "title": "ちがいさがし クリスマスツリー",
+   "desc": "3つのちがい・クリスマス"
+  },
+  {
+   "id": "t-diff-snow",
+   "tab": "trace",
+   "title": "ちがいさがし ゆきだるま",
+   "desc": "3つのちがい・ふゆ"
+  },
+  {
+   "id": "t-diff-train",
+   "tab": "trace",
+   "title": "ちがいさがし でんしゃ",
+   "desc": "3つのちがい・のりもの"
+  },
+  {
+   "id": "s-xmas-cake",
+   "tab": "art",
+   "title": "ぬりえ クリスマスケーキ",
+   "desc": "太い線・季節"
+  },
+  {
+   "id": "s-nenga-tora",
+   "tab": "art",
+   "title": "ぬりえ お正月(おせち)",
+   "desc": "くわしい線画・季節"
+  },
+  {
+   "id": "t-count-xmas2",
+   "tab": "trace",
+   "title": "かぞえて ぬろう おせち",
+   "desc": "1〜5・数あそび"
+  },
+  {
+   "id": "t-maze-snowman",
+   "tab": "trace",
+   "title": "めいろ ゆきだるまの おうち",
+   "desc": "太い線・ふゆ"
+  },
+  {
+   "id": "a-fire-truck",
+   "tab": "art",
+   "title": "ぬりえ しょうぼうしゃ",
+   "desc": "太い線・のりもの"
+  },
+  {
+   "id": "t-trace-star",
+   "tab": "trace",
+   "title": "なぞりがき ほし",
+   "desc": "てんせんをなぞる・季節"
+  },
+  {
+   "id": "t-diff-oni",
+   "tab": "trace",
+   "title": "ちがいさがし おにと まめ",
+   "desc": "3つのちがい・節分"
   }
  ]
 }

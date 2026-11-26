@@ -116,6 +116,8 @@
 | 中国の幼稚園家庭向けデジタル子育て介入の家族の人数別・二次解析(Fang ら, J Med Internet Res, 2026, e101388) | 先行試験の二次解析で、家族の人数で分けた層ごとの結果。人数別の差の検定は有意でなく、層ごとに有意が出る箇所がまちまち。限界の第1〜3項を逐語で読めず(約39,953〜79,953字と約119,906〜139,953字が要約)。家庭に落とし込みにくい |
 | 長めの家族の食事と子どもの野菜・果物の摂取の無作為化試験(JAMA Pediatrics, 2023, PMC10071335) | PMCが PROVENANCE_REQUIRED で読めなかった(リダイレクト後のURL)。未確認 |
 | 家庭ベースの短い子育て介入の長期追跡(PMC12883591)ほか UCL版 Dhar ら 2026 PDF | PMC12883591 は見送り済み。UCL Discovery の PDF は client_error。未確認 |
+| 親の発達を促す関わりと就学前児の心の健康(Li ら, Frontiers in Public Health, 2026, fpubh.2026.1677781) | 横断研究(21,366人)で因果を言えず、オッズ比も1に近い(0.98・1.04)。本文は約39,900字までしか逐語で読めず、方法の途中で切れた |
+| 親向けの応急手当プログラムの待機群比較試験(PubMed 42191408) | PubMedが client_error で読めなかった。未確認 |
 
 ## 実行ログ
 
@@ -148,3 +150,4 @@
 - 2026-11-24: 追加なし(見送り)。検索語は preschool RCT parents 2026 PLOS/Frontiers/MDPI、meta-analysis family mealtimes/bedtime/free play。候補は上の2件で基準外(PMC 2件は確認画面、PLOS ONE の doi.org は PROVENANCE_REQUIRED で未確認)。Frontiers の full ページは web-fetch で offset 0・39000・78000 と取り直すと最後まで逐語で読めた。この実行では add_repo と claude-artifacts のツールは見つからず、追加が無いのでArtifactは更新していない。リポジトリは既にあり main で git pull --ff-only により最新。次回は、検索結果の段階で見送り表と照らし、本文と表の数字が合いそうな、幼児一般のRCT/メタ分析を探す。
 - 2026-11-25: 追加なし(見送り)。検索語は preschool block play spatial RCT、toddler gesture pointing longitudinal、bilingual preschool、nature daycare RCT。全文を最後まで読めた2件(上の表)は基準外。この実行でも add_repo / claude-artifacts のツールは見つからず、Artifact更新はできなかった(未確認:環境の設定)。
 - 2026-11-26: 追加なし(見送り)。検索語は preschool RCT parents PLOS ONE 2026、meta-analysis sleep/play/feeding、toddler tantrums parent intervention、MDPI preschool mealtime。確認した候補は上の3件で、本文を最後まで確かめられた基準内の研究がなかった。PMCは www.ncbi.nlm.nih.gov が pmc.ncbi.nlm.nih.gov へ302し、転送先が PROVENANCE_REQUIRED になる。この実行では add_repo と claude-artifacts のツールは見つからず(リポジトリは既にあり main に切替えて pull で最新)、追加が無いのでArtifactは更新していない。次回は、PLOS・Frontiers の全文ページで、幼児一般・家庭で試せる題材・主要結果に差がある試験を、検索結果の段階で3件以上並べてから取る。
+- 2026-11-27: 追加なし(見送り)。検索語は preschool RCT parents 2026 PLOS ONE、meta-analysis shared reading/play/sleep/feeding、cluster RCT home-based、bedtime/tantrum RCT、storytelling/emotion talk RCT。確認した候補は上の2件と、見送り済みの PLOS Digital Health(pdig.0001357)・社会性の絵本(fpsyg.2025.1569925)の再出現で、基準を満たす研究がなかった。Frontiers は約39,900字で切れ、後半は要約になる。この実行では add_repo と claude-artifacts のツールは見つからず、追加が無いのでArtifactは更新していない。リポジトリは既にあり main に切替えて git merge --ff-only origin/main で最新。次回は、見送り表と検索結果を先に照らし、PLOS・PMC以外の全文が読める出版社の、幼児一般のRCT/メタ分析を探す。

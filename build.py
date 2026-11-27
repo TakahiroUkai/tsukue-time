@@ -63,9 +63,13 @@ def head(title, desc, rel, path, img=None, full=None):
     if img:
         og = '<meta property="og:image" content="%s"><meta name="twitter:card" content="summary_large_image">' % esc(SITE + img)
     ga = CFG["ga4"]
+    icons = ('<link rel="icon" href="%sfavicon.svg" type="image/svg+xml">'
+             '<link rel="icon" href="%sfavicon.ico" sizes="48x48">'
+             '<link rel="apple-touch-icon" href="%sapple-touch-icon.png">' % (rel, rel, rel))
     return """<!doctype html>
 <html lang="ja"><head><meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+%s
 <title>%s</title>
 <meta name="description" content="%s">
 <link rel="canonical" href="%s">
@@ -78,7 +82,7 @@ def head(title, desc, rel, path, img=None, full=None):
 <script async src="https://www.googletagmanager.com/gtag/js?id=%s"></script>
 <script>window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments)}gtag('js',new Date());gtag('config','%s');</script>
 </head><body>
-""" % (esc(full_title), esc(desc), esc(url), esc(full_title), esc(desc), esc(url), og, rel, rel, ga, ga, ga)
+""" % (icons, esc(full_title), esc(desc), esc(url), esc(full_title), esc(desc), esc(url), og, rel, rel, ga, ga, ga)
 
 
 def header(rel, current):
@@ -556,6 +560,8 @@ def build_assets():
     (DOCS / "assets").mkdir(parents=True, exist_ok=True)
     for f in ("site.css", "sheet.css", "site.js", "tree.js"):
         shutil.copyfile(ROOT / "static" / f, DOCS / "assets" / f)
+    for f in ("favicon.svg", "favicon.ico", "apple-touch-icon.png"):
+        shutil.copyfile(ROOT / "static" / f, DOCS / f)
     (DOCS / ".nojekyll").write_text("", encoding="utf8")
     (DOCS / "robots.txt").write_text("User-agent: *\nAllow: /\nSitemap: %ssitemap.xml\n" % SITE, encoding="utf8")
     urls = [SITE, SITE + "about.html", SITE + "privacy.html"] + [SITE + t["id"] + "/" for t in TABS] + [SITE + "research/", SITE + "ti-sensei/", SITE + "art/xmas-tree-maker.html"] + \
